@@ -1,0 +1,11 @@
+{
+  "baseUrl": "http://localhost:9000",
+  "env": {
+    "cypress-react-selector": {
+      "root": "#root"
+    },
+    "EXTERNAL_API": "https://jsonplaceholder.typicode.com/"
+  },
+  "viewportWidth": 1025,
+  "viewportHeight": 660
+}
