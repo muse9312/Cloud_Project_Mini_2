@@ -75,7 +75,7 @@ const Index = (props) => {
                     <h6 className="text-uppercase text-light ls-1 mb-1">
                       Overview
                     </h6>
-                    <h2 className="text-white mb-0">Sales value</h2>
+                    <h2 className="text-white mb-0">오늘 날씨???</h2>
                   </div>
                   <div className="col">
                     <Nav className="justify-content-end" pills>
@@ -111,11 +111,7 @@ const Index = (props) => {
               <CardBody>
                 {/* Chart */}
                 <div className="chart">
-                  <Line
-                    data={chartExample1[chartExample1Data]}
-                    options={chartExample1.options}
-                    getDatasetAtEvent={(e) => console.log(e)}
-                  />
+
                 </div>
               </CardBody>
             </Card>
@@ -128,7 +124,7 @@ const Index = (props) => {
                     <h6 className="text-uppercase text-muted ls-1 mb-1">
                       Performance
                     </h6>
-                    <h2 className="mb-0">Total orders</h2>
+                    <h2 className="mb-0">출석율?</h2>
                   </div>
                 </Row>
               </CardHeader>
@@ -150,7 +146,7 @@ const Index = (props) => {
               <CardHeader className="border-0">
                 <Row className="align-items-center">
                   <div className="col">
-                    <h3 className="mb-0">Page visits</h3>
+                    <h3 className="mb-0">새로 등록된 게시글</h3>
                   </div>
                   <div className="col text-right">
                     <Button
