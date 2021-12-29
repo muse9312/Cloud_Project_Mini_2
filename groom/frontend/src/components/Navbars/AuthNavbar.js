@@ -48,7 +48,7 @@ const AdminNavbar = () => {
           <UncontrolledCollapse navbar toggler="#navbar-collapse-main">
             <div className="navbar-collapse-header d-md-none">
               <Row>
-                <Col className="collapse-brand" xs="6">
+                <Col>
                   <Link to="/">
                     <img
                       alt="..."
