@@ -59,6 +59,10 @@ const Login = () => {
                 </span>
                 <span className="btn-inner--text">Github</span>
               </Button>
+
+
+
+              <br />
               <Button
                 className="btn-neutral btn-icon"
                 color="default"
@@ -69,12 +73,31 @@ const Login = () => {
                   <img
                     alt="..."
                     src={
-                      require("../../assets/img/icons/common/google.svg")
+                      require("../../assets/img/icons/common/KakaoTalk_logo.svg")
                         .default
                     }
                   />
                 </span>
-                <span className="btn-inner--text">Google</span>
+                <span className="btn-inner--text"> Kakao </span>
+              </Button>
+
+              <br />
+              <Button
+                className="btn-neutral btn-icon"
+                color="default"
+                href="#pablo"
+                onClick={(e) => e.preventDefault()}
+              >
+                <span className="btn-inner--icon">
+                  <img
+                    alt="..."
+                    src={
+                      require("../../assets/img/icons/common/naver.svg")
+                        .default
+                    }
+                  />
+                </span>
+                <span className="btn-inner--text"> Naver</span>
               </Button>
             </div>
           </CardHeader>
