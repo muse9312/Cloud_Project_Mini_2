@@ -63,7 +63,7 @@ const Index = (props) => {
                     <h6 className="text-uppercase text-light ls-1 mb-1">
                       Overview
                     </h6>
-                    <h2 className="text-white mb-0">오늘 날씨???</h2>
+                    <h2 className="text-white mb-0">뉴스 업데이트</h2>
                   </div>
                   <div className="col">
                     <Nav className="justify-content-end" pills>
