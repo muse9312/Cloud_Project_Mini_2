@@ -29,6 +29,7 @@ var routes = [
     component: Tables,
     layout: "/admin",
   },
+
   {
     path: "/cloudNews",
     name: "클라우드 뉴스",
@@ -46,6 +47,7 @@ var routes = [
  
 
 
+
   // ========================================  Logout ========================================
   <br />, <br />, <br />, <br />, <br />, <br />,
   <br />, <br />, <br />, <br />, <br />, <br />,
@@ -59,5 +61,17 @@ var routes = [
     layout: "/auth",
   },
 
+
+
+
+
+
+
+
+  {
+    path: "/register",
+    component: Register,
+    layout: "/auth",
+  },
 ];
 export default routes;
