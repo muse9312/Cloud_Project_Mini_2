@@ -28,13 +28,6 @@ var routes = [
     component: Tables,
     layout: "/admin",
   },
-  {
-    path: "/register",
-    name: "register",
-    icon: "ni ni-bullet-list-67 text-red",
-    component: Register,
-    layout: "/auth",
-  },
 
 
   // ========================================  Logout ========================================
@@ -50,5 +43,17 @@ var routes = [
     layout: "/auth",
   },
 
+
+
+
+
+
+
+
+  {
+    path: "/register",
+    component: Register,
+    layout: "/auth",
+  },
 ];
 export default routes;
