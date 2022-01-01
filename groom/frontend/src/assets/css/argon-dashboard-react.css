@@ -6424,8 +6424,15 @@ button.bg-darker:focus {
 
 .pt-5,
 .py-5 {
-  padding-top: 3rem !important; }
+  padding-top: 3rem !important;
+margin-left: 100rem !important; }
 
+
+.footer-design {
+  padding-top: 3rem !important;
+margin-left: 100rem !important;
+
+}
 .pr-5,
 .px-5 {
   padding-right: 3rem !important; }
@@ -6433,7 +6440,8 @@ button.bg-darker:focus {
 .pb-5,
 
 .py-5 {
-  padding-bottom: 3rem !important; }
+  padding-bottom: 3rem !important;
+  margin-left: 100rem !important; }
 
 .pl-5,
 

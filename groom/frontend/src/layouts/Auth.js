@@ -22,7 +22,7 @@ import { Container, Row, Col } from "reactstrap";
 
 // core components
 import AuthNavbar from "components/Navbars/AuthNavbar.js";
-import AuthFooter from "components/Footers/AuthFooter.js";
+import LoginFooter from "components/Footers/LoginFooter.js";
 
 import routes from "routes.js";
 
@@ -62,16 +62,14 @@ const Auth = (props) => {
     <>
       <div className="main-content" ref={mainContent}>
         <AuthNavbar />
-        <div className="header bg-gradient-info py-7 py-lg-8">
+        <div className="header bg-gradient-info py-7 ">
           <Container>
             <div className="header-body text-center mb-7">
               <Row className="justify-content-center">
                 <Col lg="5" md="6">
                   <h1 className="text-white">Welcome!</h1>
-                  <p className="text-lead text-light">
-                    Use these awesome forms to login or create new account in
-                    your project for free.
-                  </p>
+                  <h1 className="text-white">Cloud Groom Community</h1>
+
                 </Col>
               </Row>
             </div>
@@ -94,15 +92,15 @@ const Auth = (props) => {
         </div>
         {/* Page content */}
         <Container className="mt--8  ">
-          <div className="justify-content-center ">
+          <Row className="justify-content-center ">
             <Switch>
               {getRoutes(routes)}
               <Redirect from="*" to="/auth/login" />
             </Switch>
-          </div>
+          </Row>
         </Container>
       </div>
-      <AuthFooter />
+      <LoginFooter />
     </>
   );
 };

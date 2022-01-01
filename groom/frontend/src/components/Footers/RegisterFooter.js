@@ -23,7 +23,7 @@ import { NavItem, NavLink, Nav, Container, Row, Col } from "reactstrap";
 const Login = () => {
   return (
     <>
-      <footer className="footer-design">
+      <footer className="py-5">
         <Container>
           <Row className="align-items-center justify-content-xl-between">
             <Col xl="6">
@@ -34,7 +34,7 @@ const Login = () => {
                   href="https://www.creative-tim.com?ref=adr-auth-footer"
                   target="_blank"
                 >
-                  Creative Tim
+                  뭉개뭉개
                 </a>
               </div>
             </Col>
