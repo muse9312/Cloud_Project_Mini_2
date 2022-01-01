@@ -1,22 +1,5 @@
-/*!
-
-=========================================================
-* Argon Dashboard React - v1.2.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-
-// reactstrap components
+/*eslint-disable */
+import axios from "axios";
 import {
   Button,
   Card,
@@ -33,6 +16,38 @@ import {
 } from "reactstrap";
 
 const Register = () => {
+
+  function SendData(e) {
+    e.preventDefault();
+    console.log(e);
+    console.log(e.target['0'].value);
+    console.log(e.target['1'].value);
+    console.log(e.target['2'].value);
+
+
+    const formData = new FormData();
+    const name = e.target['0'].value;
+    const email = e.target['1'].value;
+    const pwd = e.target['2'].value;
+
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("pwd", pwd);
+
+    axios({
+      url: 'http://localhost:8080/api/res',
+      method: 'post',
+      data: formData
+    })
+      .then(function (res) {
+        console.log(res.data);
+        window.location = '/';
+      })
+
+
+  }
+
+
   return (
     <>
       <Col lg="6" md="8">
@@ -82,11 +97,9 @@ const Register = () => {
             <div className="text-center text-muted mb-4">
               <small>Or sign up with credentials</small>
             </div>
-            <Form role="form" onSubmit={function (e) {
+            <Form role="form" onSubmit={SendData}>
 
 
-
-            }}>
 
               {/* 회원가입 input  */}
 
@@ -175,9 +188,11 @@ const Register = () => {
 
 
               <div className="text-center">
-                <Button className="mt-4" color="primary" type="button">
+                <Button className="mt-4" color="primary" type="submit" id="res" >
+
                   Create account
                 </Button>
+
               </div>
 
 
