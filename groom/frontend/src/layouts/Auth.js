@@ -93,13 +93,13 @@ const Auth = (props) => {
           </div>
         </div>
         {/* Page content */}
-        <Container className="mt--8 pb-5">
-          <Row className="justify-content-center">
+        <Container className="mt--8  ">
+          <div className="justify-content-center ">
             <Switch>
               {getRoutes(routes)}
               <Redirect from="*" to="/auth/login" />
             </Switch>
-          </Row>
+          </div>
         </Container>
       </div>
       <AuthFooter />

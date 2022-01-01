@@ -1,20 +1,4 @@
-/*!
-
-=========================================================
-* Argon Dashboard React - v1.2.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
+/*eslint-disable*/
 import Index from "views/Index.js";
 import Profile from "views/examples/Profile.js";
 import Register from "views/examples/Register.js";
@@ -45,18 +29,26 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/login",
-    name: "Login",
-    icon: "ni ni-key-25 text-info",
-    component: Login,
-    layout: "/auth",
-  },
-  {
     path: "/register",
-    name: "Register",
-    icon: "ni ni-circle-08 text-pink",
+    name: "register",
+    icon: "ni ni-bullet-list-67 text-red",
     component: Register,
     layout: "/auth",
   },
+
+
+  // ========================================  Logout ========================================
+  <br />, <br />, <br />, <br />, <br />, <br />,
+  <br />, <br />, <br />, <br />, <br />, <br />,
+  <br />, <br />, <br />, <br />, <br />, <br />,
+  <br />, <br />,
+  {
+    path: "/login",
+    name: "Logout",
+    icon: "ni ni-user-run text-pink",
+    component: Login,
+    layout: "/auth",
+  },
+
 ];
 export default routes;
