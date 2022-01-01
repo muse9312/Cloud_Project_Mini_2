@@ -5,6 +5,7 @@ import Quiz from "views/examples/Quiz.js";
 import Login from "views/examples/Login.js";
 import Tables from "views/examples/Tables.js";
 import Notice from "views/examples/Notice.js";
+import Register from "views/examples/Register.js";
 
 var routes = [
   {
