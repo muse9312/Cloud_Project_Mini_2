@@ -82,7 +82,15 @@ const Register = () => {
             <div className="text-center text-muted mb-4">
               <small>Or sign up with credentials</small>
             </div>
-            <Form role="form">
+            <Form role="form" onSubmit={function (e) {
+
+
+
+            }}>
+
+              {/* 회원가입 input  */}
+
+              {/* 이름 */}
               <FormGroup>
                 <InputGroup className="input-group-alternative mb-3">
                   <InputGroupAddon addonType="prepend">
@@ -90,9 +98,11 @@ const Register = () => {
                       <i className="ni ni-hat-3" />
                     </InputGroupText>
                   </InputGroupAddon>
-                  <Input placeholder="Name" type="text" />
+                  <Input placeholder="Name" type="text" id="name" name="name" />
                 </InputGroup>
               </FormGroup>
+
+              {/* 이메일 */}
               <FormGroup>
                 <InputGroup className="input-group-alternative mb-3">
                   <InputGroupAddon addonType="prepend">
@@ -101,12 +111,15 @@ const Register = () => {
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input
-                    placeholder="Email"
+                    id="email" name="email"
+                    placeholder="name@example.com"
                     type="email"
-                    autoComplete="new-email"
                   />
                 </InputGroup>
               </FormGroup>
+
+
+              {/* 패스워드 */}
               <FormGroup>
                 <InputGroup className="input-group-alternative">
                   <InputGroupAddon addonType="prepend">
@@ -117,16 +130,23 @@ const Register = () => {
                   <Input
                     placeholder="Password"
                     type="password"
+                    id="pwd" name="pwd"
                     autoComplete="new-password"
                   />
                 </InputGroup>
               </FormGroup>
+
+
               <div className="text-muted font-italic">
                 <small>
                   password strength:{" "}
                   <span className="text-success font-weight-700">strong</span>
                 </small>
               </div>
+
+              {/* 동의 */}
+
+
               <Row className="my-4">
                 <Col xs="12">
                   <div className="custom-control custom-control-alternative custom-checkbox">
@@ -149,11 +169,18 @@ const Register = () => {
                   </div>
                 </Col>
               </Row>
+
+
+              {/* 회원가입버튼  */}
+
+
               <div className="text-center">
                 <Button className="mt-4" color="primary" type="button">
                   Create account
                 </Button>
               </div>
+
+
             </Form>
           </CardBody>
         </Card>
