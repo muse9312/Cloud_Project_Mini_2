@@ -1,40 +1,49 @@
 /*eslint-disable*/
 import Index from "views/Index.js";
-import Profile from "views/examples/Profile.js";
-import Register from "views/examples/Register.js";
+import CloudNews from "views/examples/CloudNews.js";
+import Quiz from "views/examples/Quiz.js";
 import Login from "views/examples/Login.js";
 import Tables from "views/examples/Tables.js";
+import Notice from "views/examples/Notice.js";
 
 var routes = [
   {
     path: "/index",
-    name: "Dashboard",
+    name: "뭉게구름",
     icon: "ni ni-tv-2 text-primary",
     component: Index,
     layout: "/admin",
   },
-
   {
-    path: "/user-profile",
-    name: "User Profile",
-    icon: "ni ni-single-02 text-yellow",
-    component: Profile,
+    path: "/notice",
+    name: "공지사항",
+    icon: "ni ni-bulb-61 text-blue",
+    component: Notice,
     layout: "/admin",
   },
+  
   {
     path: "/tables",
-    name: "Tables",
-    icon: "ni ni-bullet-list-67 text-red",
+    name: "게시판",
+    icon: "ni ni-bullet-list-67 text-blue",
     component: Tables,
     layout: "/admin",
   },
   {
-    path: "/register",
-    name: "register",
-    icon: "ni ni-bullet-list-67 text-red",
-    component: Register,
-    layout: "/auth",
+    path: "/cloudNews",
+    name: "클라우드 뉴스",
+    icon: "ni ni-cloud-upload-96 text-blue",
+    component: CloudNews,
+    layout: "/admin",
   },
+  {
+    path: "/Quiz",
+    name: "코드 정보",
+    icon: "ni ni-ruler-pencil text-blue",
+    component: Quiz,
+    layout: "/admin",
+  },
+ 
 
 
   // ========================================  Logout ========================================

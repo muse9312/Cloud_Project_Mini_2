@@ -2236,7 +2236,7 @@ fieldset:disabled a.btn {
     color: #fff;
     background-color: #11cdef;
     border-color: #11cdef; }
-    .btn-outline-info:not(:disabled):not(.disabled):active:focus, .btn-outline-info:not(:disabled):not(.disabled).active:focus,
+    .btn-outline-info:not(:disabled):not(.disabled):active:focus, .-outline-info:not(:disabled):not(.disabled).active:focus,
     .show > .btn-outline-info.dropdown-toggle:focus {
       box-shadow: 0 0 0 0 rgba(17, 205, 239, 0.5); }
 

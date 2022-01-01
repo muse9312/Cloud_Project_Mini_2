@@ -49,7 +49,7 @@ const Tables = () => {
           <div className="col">
             <Card className="shadow">
               <CardHeader className="border-0">
-                <h3 className="mb-0">게시판</h3>
+                <h3 className="mb-0">클라우드 뉴스</h3>
               </CardHeader>
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
@@ -886,16 +886,13 @@ const Tables = () => {
                     </td>
                   </tr>
                 </tbody> */}
-                
               </Table>
-              
               <CardFooter className="py-4">
                 <nav aria-label="...">
                   <Pagination
                     className="pagination justify-content-end mb-0"
                     listClassName="justify-content-end mb-0"
                   >
-                    <button type="button" class="btn btn-primary btn-block" id="write-btn">글쓰기</button>
                     <PaginationItem className="disabled">
                       <PaginationLink
                         href="#pablo"
@@ -907,7 +904,6 @@ const Tables = () => {
                       </PaginationLink>
                     </PaginationItem>
                     <PaginationItem className="active">
-        
                       <PaginationLink
                         href="#pablo"
                         onClick={(e) => e.preventDefault()}
@@ -945,12 +941,9 @@ const Tables = () => {
               </CardFooter>
             </Card>
           </div>
-          
         </Row>
         {/* Dark table */}
-        <Container>
- 
-</Container>
+        
       </Container>
     </>
   );
