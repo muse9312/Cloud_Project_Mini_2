@@ -32,6 +32,12 @@ const Login = () => {
 
   }
 
+  function KakaoClick(e) {
+    e.preventDefault();
+    window.location.href = "https://kauth.kakao.com/oauth/authorize?client_id=bb1062f029aa6ff58bbe4fc11289458c&redirect_uri=http://localhost:3000/admin/index&response_type=code"
+
+  }
+
 
 
   function SendData(e) {
@@ -150,6 +156,8 @@ const Login = () => {
               <small>Sign in with</small>
             </div>
             <div className="btn-wrapper text-center">
+
+              {/* Github Login  */}
               <Button
                 className="btn-neutral btn-icon"
                 color="default"
@@ -168,14 +176,12 @@ const Login = () => {
                 <span className="btn-inner--text">Github</span>
               </Button>
 
-
-
-
+              {/* Kakao Login */}
               <Button
                 className="btn-neutral btn-icon"
                 color="default"
                 href="#pablo"
-                onClick={(e) => e.preventDefault()}
+                onClick={KakaoClick}
               >
                 <span className="btn-inner--icon">
                   <img
@@ -188,25 +194,6 @@ const Login = () => {
                 </span>
                 <span className="btn-inner--text"> Kakao </span>
               </Button>
-
-
-              {/* <Button
-                className="btn-neutral btn-icon"
-                color="default"
-                href="#pablo"
-                onClick={(e) => e.preventDefault()}
-              >
-                <span className="btn-inner--icon">
-                  <img
-                    alt="..."
-                    src={
-                      require("../../assets/img/icons/common/naver.svg")
-                        .default
-                    }
-                  />
-                </span>
-                <span className="btn-inner--text"> Naver</span>
-              </Button> */}
             </div>
           </CardHeader>
 

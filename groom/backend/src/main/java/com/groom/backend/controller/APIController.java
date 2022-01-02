@@ -1,4 +1,5 @@
 package com.groom.backend.controller;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
@@ -10,9 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
 import java.util.List;
-
 
 import javax.servlet.http.HttpSession;
 
@@ -20,9 +19,6 @@ import com.groom.backend.model.Board;
 import com.groom.backend.repository.BoardRepository;
 import com.groom.backend.repository.UserRepository;
 
-
-
-@CrossOrigin
 @Controller
 @RequestMapping("/api")
 public class APIController {
@@ -34,7 +30,7 @@ public class APIController {
 
 	@Autowired
 	HttpSession session;
-	
+
 	@GetMapping("/tables")
 	@ResponseBody
 	public List<Board> boardList() {
