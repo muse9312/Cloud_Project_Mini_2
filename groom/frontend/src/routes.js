@@ -1,11 +1,12 @@
 /*eslint-disable*/
 import Index from "views/Index.js";
-import CloudNews from "views/examples/CloudNews.js";
-import Quiz from "views/examples/Quiz.js";
+import CloudNews from "views/board/CloudNews.js";
+import Quiz from "views/board/Quiz.js";
 import Login from "views/examples/Login.js";
-import Tables from "views/examples/Tables.js";
-import Notice from "views/examples/Notice.js";
+import Tables from "views/board/Tables.js";
+import Notice from "views/board/Notice.js";
 import Register from "views/examples/Register.js";
+import TableWrite from "views/write/TableWrite.js";
 
 var routes = [
   {
@@ -73,6 +74,11 @@ var routes = [
     path: "/register",
     component: Register,
     layout: "/auth",
+  },
+  {
+    path: "/tableWrite",
+    component: TableWrite,
+    layout: "/admin",
   },
 ];
 export default routes;

@@ -38,15 +38,26 @@ const Tables = () => {
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
                   <tr>
-                    <th scope="col">제목</th>
+
+                    
+                     <th scope="col">제목</th>
                     <th scope="col">작성자</th>
                     <th scope="col">작성일</th>
                     <th scope="col">조회</th>
                     <th scope="col">좋아요</th>
-                    <th scope="col" />
+                    <th scope="col" /> 
                   </tr>
                 </thead>
+                <tbody>
+                  <tr>
+
+                  </tr>
+
+
+                </tbody>
+   
                 {/* <tbody>
+     
                   <tr>
                     <th scope="row">
                       <Media className="align-items-center">
@@ -872,7 +883,6 @@ const Tables = () => {
                 </tbody> */}
 
               </Table>
-
               <CardFooter className="py-4">
                 <nav aria-label="...">
                   <Pagination
@@ -931,7 +941,7 @@ const Tables = () => {
           </div>
 
         </Row>
-        {/* Dark table */}
+     
         <Container>
 
         </Container>
