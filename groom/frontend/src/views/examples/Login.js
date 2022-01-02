@@ -28,7 +28,7 @@ const Login = () => {
 
   function GithubClick(e) {
     e.preventDefault();
-    window.location.href = "https://github.com/login/oauth/authorize?client_id=Iv1.1dd944dcbce99c5d&redirect_uri=http://localhost:3000/admin/index"
+    window.location.href = "https://github.com/login/oauth/authorize?client_id=51a830e8c4702bbaaaf7&redirect_uri=http://localhost:3000/admin/index"
 
   }
 
