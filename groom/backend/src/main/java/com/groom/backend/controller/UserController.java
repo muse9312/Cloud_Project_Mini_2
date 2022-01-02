@@ -44,27 +44,27 @@ public class UserController {
 
     // ========================== Login ==============================
 
-    // @GetMapping("/signin")
-    // public String signin() {
-    // return "signin";
-    // }
+    @GetMapping("/signin")
+    public String signin() {
+    return "signin";
+    }
 
-    // @PostMapping("/signin")
-    // @ResponseBody
-    // public Map<String, Object> signinPost(@ModelAttribute User user) {
-    // User dbUser = userRepository.findByEmailAndPwd(user.getEmail(),
-    // user.getPwd());
-    // Map<String, Object> map = new HashMap<>();
-    // if (dbUser != null) {
-    // map.put("code", 200);
-    // map.put("message", "success");
-    // } else {
-    // map.put("code", 201);
-    // map.put("message", "fail");
+    @PostMapping("/signin")
+    @ResponseBody
+    public Map<String, Object> signinPost(@ModelAttribute User user) {
+    User dbUser = userRepository.findByEmailAndPwd(user.getEmail(),
+    user.getPwd());
+    Map<String, Object> map = new HashMap<>();
+    if (dbUser != null) {
+    map.put("code", 200);
+    map.put("message", "success");
+    } else {
+    map.put("code", 201);
+    map.put("message", "fail");
 
-    // }
+    }
 
-    // return map;
-    // }
+    return map;
+    }
 
 }
