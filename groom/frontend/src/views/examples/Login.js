@@ -1,6 +1,5 @@
+import axios from 'axios'
 
-
-// reactstrap components
 import {
   Button,
   Card,
@@ -26,6 +25,54 @@ const Login = () => {
     window.location.href = "/auth/register"
 
   }
+
+  function GithubClick(e) {
+    e.preventDefault();
+    window.location.href = "https://github.com/login/oauth/authorize?client_id=Iv1.1dd944dcbce99c5d&redirect_uri=http://localhost:3000/admin/index"
+
+  }
+
+
+
+  function SendData(e) {
+    e.preventDefault();
+    console.log(e);
+    console.log(e.target['0'].value);
+    console.log(e.target['1'].value);
+
+
+
+    const formData = new FormData();
+    const email = e.target['0'].value;
+    const pwd = e.target['1'].value;
+
+
+    formData.append("email", email);
+    formData.append("pwd", pwd);
+
+    axios({
+      url: 'http://localhost:8080/api/log',
+      method: 'post',
+      data: formData
+    }).then(function (res) {
+      console.log(res.data);
+      if (res.data.code === 200) {
+        alert('로그인성공');
+
+        window.location = '/admin/index';
+
+      } else {
+        alert('이메일과 비밀번호를 확인해주세요');
+      }
+    })
+
+
+  }
+
+
+
+
+
   return (
     <>
       <Col lg="5" md="7">
@@ -36,7 +83,12 @@ const Login = () => {
             <div className="text-center text-muted mb-4">
               <small>sign in with credentials</small>
             </div>
-            <Form role="form">
+
+            {/* Form tag */}
+
+            <Form role="form" onSubmit={SendData}>
+
+              {/* Email  */}
               <FormGroup className="mb-3">
                 <InputGroup className="input-group-alternative">
                   <InputGroupAddon addonType="prepend">
@@ -47,10 +99,14 @@ const Login = () => {
                   <Input
                     placeholder="Email"
                     type="email"
+                    id="email" name="email"
                     autoComplete="new-email"
                   />
                 </InputGroup>
               </FormGroup>
+
+              {/* Password */}
+
               <FormGroup>
                 <InputGroup className="input-group-alternative">
                   <InputGroupAddon addonType="prepend">
@@ -61,10 +117,13 @@ const Login = () => {
                   <Input
                     placeholder="Password"
                     type="password"
+                    id="pwd" name="pwd"
                     autoComplete="new-password"
                   />
                 </InputGroup>
               </FormGroup>
+
+
               <div className="custom-control custom-control-alternative custom-checkbox">
                 <input
                   className="custom-control-input"
@@ -79,7 +138,7 @@ const Login = () => {
                 </label>
               </div>
               <div className="text-center">
-                <Button className="my-4" color="primary" type="button">
+                <Button className="my-4" color="primary" type="submit">
                   Sign in
                 </Button>
               </div>
@@ -95,7 +154,7 @@ const Login = () => {
                 className="btn-neutral btn-icon"
                 color="default"
                 href="#pablo"
-                onClick={(e) => e.preventDefault()}
+                onClick={GithubClick}
               >
                 <span className="btn-inner--icon">
                   <img
