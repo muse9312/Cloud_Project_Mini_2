@@ -69,7 +69,6 @@ var routes = [
 
 
 
-
   {
     path: "/register",
     component: Register,
@@ -80,5 +79,6 @@ var routes = [
     component: TableWrite,
     layout: "/admin",
   },
+  
 ];
 export default routes;
