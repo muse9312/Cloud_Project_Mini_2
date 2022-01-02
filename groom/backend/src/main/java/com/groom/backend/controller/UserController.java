@@ -30,40 +30,40 @@ public class UserController {
     // ========================== Register ==============================
 
     @GetMapping("/res")
-    public String signup() {
+    public String register() {
         return "res";
     }
 
     @PostMapping("/res")
     @ResponseBody
-    public User signupPost(@ModelAttribute User user) {
+    public User registerPost(@ModelAttribute User user) {
         userRepository.save(user);
         return user;
     }
 
     // ========================== Login ==============================
 
-    // @GetMapping("/signin")
-    // public String signin() {
-    // return "signin";
-    // }
+    @GetMapping("/log")
+    public String login() {
+        return "log";
+    }
 
-    // @PostMapping("/signin")
-    // @ResponseBody
-    // public Map<String, Object> signinPost(@ModelAttribute User user) {
-    // User dbUser = userRepository.findByEmailAndPwd(user.getEmail(),
-    // user.getPwd());
-    // Map<String, Object> map = new HashMap<>();
-    // if (dbUser != null) {
-    // map.put("code", 200);
-    // map.put("message", "success");
-    // } else {
-    // map.put("code", 201);
-    // map.put("message", "fail");
+    @PostMapping("/log")
+    @ResponseBody
+    public Map<String, Object> loginPost(@ModelAttribute User user) {
+        User dbUser = userRepository.findByEmailAndPwd(user.getEmail(),
+                user.getPwd());
+        Map<String, Object> map = new HashMap<>();
+        if (dbUser != null) {
+            map.put("code", 200);
+            map.put("message", "success");
+        } else {
+            map.put("code", 201);
+            map.put("message", "fail");
 
-    // }
+        }
 
-    // return map;
-    // }
+        return map;
+    }
 
 }
