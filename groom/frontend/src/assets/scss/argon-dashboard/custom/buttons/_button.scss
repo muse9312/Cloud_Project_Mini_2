@@ -21,6 +21,39 @@
       // margin-right: 0.5rem;
       margin-bottom: 0.5rem;
    }
+   
+
+   // Icons
+
+   i:not(:first-child),
+   svg:not(:first-child) {
+      margin-left: 0.5rem;
+   }
+
+   i:not(:last-child),
+   svg:not(:last-child) {
+      margin-right: 0.5rem;
+   }
+}
+
+.btn1 {
+   position: relative;
+   text-transform: $btn-text-transform;
+   transition: $transition-base;
+   letter-spacing: $btn-letter-spacing;
+   font-size: $input-btn-font-size;
+   will-change: transform;
+
+   &:hover {
+      @include box-shadow($btn-hover-box-shadow);
+      transform: translateY($btn-hover-translate-y);
+   }
+
+   &:not(:last-child) {
+       margin-right: 28rem;
+      margin-bottom: 0.5rem;
+   }
+   
 
    // Icons
 

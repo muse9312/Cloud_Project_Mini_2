@@ -1,60 +1,76 @@
-/*!
-
-=========================================================
-* Argon Dashboard React - v1.2.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
+/*eslint-disable*/
 import Index from "views/Index.js";
-import Profile from "views/examples/Profile.js";
-import Register from "views/examples/Register.js";
+import CloudNews from "views/examples/CloudNews.js";
+import Quiz from "views/examples/Quiz.js";
 import Login from "views/examples/Login.js";
 import Tables from "views/examples/Tables.js";
+import Notice from "views/examples/Notice.js";
+import Register from "views/examples/Register.js";
 
 var routes = [
   {
     path: "/index",
-    name: "Dashboard",
+    name: "뭉게구름",
     icon: "ni ni-tv-2 text-primary",
     component: Index,
     layout: "/admin",
   },
-
   {
-    path: "/user-profile",
-    name: "User Profile",
-    icon: "ni ni-single-02 text-yellow",
-    component: Profile,
+    path: "/notice",
+    name: "공지사항",
+    icon: "ni ni-bulb-61 text-blue",
+    component: Notice,
     layout: "/admin",
   },
+  
   {
     path: "/tables",
-    name: "Tables",
-    icon: "ni ni-bullet-list-67 text-red",
+    name: "게시판",
+    icon: "ni ni-bullet-list-67 text-blue",
     component: Tables,
     layout: "/admin",
   },
+
+  {
+    path: "/cloudNews",
+    name: "클라우드 뉴스",
+    icon: "ni ni-cloud-upload-96 text-blue",
+    component: CloudNews,
+    layout: "/admin",
+  },
+  {
+    path: "/Quiz",
+    name: "코드 정보",
+    icon: "ni ni-ruler-pencil text-blue",
+    component: Quiz,
+    layout: "/admin",
+  },
+ 
+
+
+
+  // ========================================  Logout ========================================
+  <br />, <br />, <br />, <br />, <br />, <br />,
+  <br />, <br />, <br />, <br />, <br />, <br />,
+  <br />, <br />, <br />, <br />, <br />,
+  
   {
     path: "/login",
-    name: "Login",
-    icon: "ni ni-key-25 text-info",
+    name: "Logout",
+    icon: "ni ni-user-run text-pink",
     component: Login,
     layout: "/auth",
   },
+
+
+
+
+
+
+
+
   {
     path: "/register",
-    name: "Register",
-    icon: "ni ni-circle-08 text-pink",
     component: Register,
     layout: "/auth",
   },
