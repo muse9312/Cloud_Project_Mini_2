@@ -1,21 +1,5 @@
-/*!
+/*eslint-disable*/
 
-=========================================================
-* Argon Dashboard React - v1.2.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-// reactstrap components
 import {
   Badge,
   Card,
@@ -897,9 +881,13 @@ const Tables = () => {
                     </td>
                   </tr>
                 </tbody> */}
-                
+
               </Table>
+<<<<<<< HEAD:groom/frontend/src/views/board/Tables.js
              
+=======
+
+>>>>>>> 77f62ea08759bc4d3499feac03e33ec10fc1d458:groom/frontend/src/views/examples/Tables.js
               <CardFooter className="py-4">
                 <nav aria-label="...">
                   <Pagination
@@ -918,7 +906,7 @@ const Tables = () => {
                       </PaginationLink>
                     </PaginationItem>
                     <PaginationItem className="active">
-        
+
                       <PaginationLink
                         href="#pablo"
                         onClick={(e) => e.preventDefault()}
@@ -956,12 +944,12 @@ const Tables = () => {
               </CardFooter>
             </Card>
           </div>
-          
+
         </Row>
      
         <Container>
- 
-</Container>
+
+        </Container>
       </Container>
     </>
   );
