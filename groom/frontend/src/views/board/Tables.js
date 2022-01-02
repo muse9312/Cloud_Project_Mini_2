@@ -883,11 +883,6 @@ const Tables = () => {
                 </tbody> */}
 
               </Table>
-<<<<<<< HEAD:groom/frontend/src/views/board/Tables.js
-             
-=======
-
->>>>>>> 77f62ea08759bc4d3499feac03e33ec10fc1d458:groom/frontend/src/views/examples/Tables.js
               <CardFooter className="py-4">
                 <nav aria-label="...">
                   <Pagination
