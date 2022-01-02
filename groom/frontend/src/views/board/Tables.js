@@ -1,5 +1,7 @@
 /*eslint-disable*/
-
+import axios from 'axios';
+import { Link } from "react-router-dom";
+import { useEffect, useState } from 'react';
 import {
   Badge,
   Card,
@@ -23,6 +25,19 @@ import {
 import Header from "components/Headers/Header.js";
 
 const Tables = () => {
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    axios({
+      url: 'http://localhost:8080/api/admin/tables',
+      method: 'get'
+    }).then((res) => {
+      console.log(res.data);
+      setList(res.data);
+    });
+  }, []); // deps
+
+
   return (
     <>
       <Header />
@@ -38,8 +53,6 @@ const Tables = () => {
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
                   <tr>
-
-                    
                      <th scope="col">제목</th>
                     <th scope="col">작성자</th>
                     <th scope="col">작성일</th>
@@ -48,9 +61,28 @@ const Tables = () => {
                     <th scope="col" /> 
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
 
+          
+                <tbody>
+                {list.map((v) => {
+              return (
+                <tr>
+                  <td>{v.id}</td>
+                  <td>{v.title}</td>
+                  <td>{v.user_id}</td>
+                </tr>
+              );
+            })}
+                  <tr>
+                  {/* {list.map((v) => {
+              return (
+                <tr>
+                  <td>{v.id}</td>
+                  <td>{v.title}</td>
+                  <td>{v.user_id}</td>
+                </tr>
+              );
+            })} */}
                   </tr>
 
 
@@ -884,12 +916,18 @@ const Tables = () => {
 
               </Table>
               <CardFooter className="py-4">
+
                 <nav aria-label="...">
+                  
                   <Pagination
                     className="pagination justify-content-end mb-0"
                     listClassName="justify-content-end mb-0"
                   >
+                    <>
+                    <Link to="/admin/tableWrite">
                     <button type="button" class="btn btn-primary btn-block" id="write-btn">글쓰기</button>
+                    </Link>
+                    </>
                     <PaginationItem className="disabled">
                       <PaginationLink
                         href="#pablo"
