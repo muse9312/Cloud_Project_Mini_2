@@ -52,6 +52,30 @@ const TableWrite = () => {
       <Header />
       {/* Page content */}
       <Container className="mt--7" fluid>
+      <form onSubmit={(e) => {
+            e.preventDefault();
+
+            console.log(e.target['0'].value);
+            console.log(e.target['1'].value);
+
+            const formData = new FormData();
+            const title = e.target['0'].value;
+            const content = e.target['1'].value;
+            // const name = e.target['2'].value;
+            formData.append("title", title);
+            formData.append("content", content);
+            // formData.append("name", name);
+
+            axios({
+              url: 'http://loaclhost:8080/api/tableWrite',
+              method: 'post',
+              data: formData,
+            }).then((res) => {
+              console.log(res.data);
+              window.location = '/admin/tables';
+            });
+
+          }}>
         {/* Table */}
         <Row>
           <div className="col">
@@ -80,57 +104,36 @@ const TableWrite = () => {
                           <label for="content">첨부파일</label>
                           <input type="file" name="image"></input>
                         </div>
-                        <Link to="/admin/tables">
+                        
                           <button type="submit" class="btn btn-primary">저장하기</button>
-                        </Link>
+                       
                       </form>
+                      
                     </div>
-                    {/*      
-      <div class="mb-3">
-        <label for="title">제목:</label>
-        <input type="text" class="form-control" id="title" name="title"></input>
-      </div>
-      <div class="mb-3">
-        <label for="content">내용:</label>
-        <textarea class="form-control" rows="10" name="content" id="content"></textarea>
-      </div>
-       */}
+     
                   </tr>
 
 
                 </tbody>
+                
 
               </Table>
+              
 
               <CardFooter className="py-4">
+                
 
               </CardFooter>
+              
             </Card>
           </div>
 
         </Row>
 
+        </form>
+
         <Container>
-          <form onSubmit={(e) => {
-            e.preventDefault();
-            const formData = new FormData();
-            const title = e.target['0'].value;
-            const content = e.target['1'].value;
-            const userId = e.target['2'].value;
-            formData.append("title", title);
-            formData.append("content", content);
-            formData.append("userId", userId);
-
-            axios({
-              url: 'http://127.0.0.1:8080/api/tableWrite',
-              method: 'post',
-              data: formData,
-            }).then((res) => {
-              console.log(res.data);
-              window.location = '/';
-            });
-
-          }}></form>
+      
         </Container>
       </Container>
     </>
