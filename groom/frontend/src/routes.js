@@ -7,6 +7,8 @@ import Tables from "views/board/Tables.js";
 import Notice from "views/board/Notice.js";
 import Register from "views/examples/Register.js";
 import TableWrite from "views/write/TableWrite.js";
+// import Ananymous from "views/board/Ananymous.js"
+//import Dropdown  from "views/board/Dropdown";
 
 var routes = [
   {
@@ -16,6 +18,7 @@ var routes = [
     component: Index,
     layout: "/admin",
   },
+
   {
     path: "/notice",
     name: "공지사항",
@@ -23,7 +26,7 @@ var routes = [
     component: Notice,
     layout: "/admin",
   },
-  
+
   {
     path: "/tables",
     name: "게시판",
@@ -32,6 +35,14 @@ var routes = [
     layout: "/admin",
   },
 
+  // {
+  //   path: "/ananymous",
+  //   name: "익명게시판",
+  //   icon: "ni ni-bullet-list-68 text-blue",
+  //   component: Ananymous,
+  //   layout: "/admin",
+  // },
+
   {
     path: "/cloudNews",
     name: "클라우드 뉴스",
@@ -39,6 +50,7 @@ var routes = [
     component: CloudNews,
     layout: "/admin",
   },
+
   {
     path: "/Quiz",
     name: "코드 정보",
@@ -46,7 +58,7 @@ var routes = [
     component: Quiz,
     layout: "/admin",
   },
- 
+
 
 
 
@@ -54,7 +66,7 @@ var routes = [
   <br />, <br />, <br />, <br />, <br />, <br />,
   <br />, <br />, <br />, <br />, <br />, <br />,
   <br />, <br />, <br />, <br />, <br />,
-  
+
   {
     path: "/login",
     name: "Logout",
@@ -64,21 +76,17 @@ var routes = [
   },
 
 
-
-
-
-
-
-
   {
     path: "/register",
     component: Register,
     layout: "/auth",
   },
+
   {
     path: "/tableWrite",
     component: TableWrite,
     layout: "/admin",
   },
 ];
+
 export default routes;
