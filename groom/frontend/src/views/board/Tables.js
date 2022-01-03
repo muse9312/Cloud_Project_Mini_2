@@ -29,7 +29,7 @@ const Tables = () => {
 
   useEffect(() => {
     axios({
-      url: 'http://localhost:8080/api/admin/tables',
+      url: 'http://localhost:8080/board/tables',
       method: 'get'
     }).then((res) => {
       console.log(res.data);
@@ -53,38 +53,26 @@ const Tables = () => {
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
                   <tr>
-                     <th scope="col">제목</th>
+                     <th scope="col">순서</th>
+                    <th scope="col">제목</th>
                     <th scope="col">작성자</th>
-                    <th scope="col">작성일</th>
                     <th scope="col">조회</th>
                     <th scope="col">좋아요</th>
                     <th scope="col" /> 
                   </tr>
                 </thead>
-
-          
                 <tbody>
                 {list.map((v) => {
               return (
                 <tr>
                   <td>{v.id}</td>
                   <td>{v.title}</td>
-                  <td>{v.user_id}</td>
+                  <td>{v.userId}</td>
+                  {/* <td>{v.nowDate}</td>  */}
                 </tr>
               );
             })}
-                  <tr>
-                  {/* {list.map((v) => {
-              return (
-                <tr>
-                  <td>{v.id}</td>
-                  <td>{v.title}</td>
-                  <td>{v.user_id}</td>
-                </tr>
-              );
-            })} */}
-                  </tr>
-
+         
 
                 </tbody>
    
