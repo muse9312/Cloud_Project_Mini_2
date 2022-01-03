@@ -1,5 +1,7 @@
 package com.groom.backend.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,4 +18,6 @@ public class Board {
 	private String title;
 	private String content;
 	private String userId;
+	Date nowDate;
+	
 }

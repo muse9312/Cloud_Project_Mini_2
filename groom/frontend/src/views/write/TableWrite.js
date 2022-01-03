@@ -35,30 +35,6 @@ const TableWrite = () => {
       <Header />
       {/* Page content */}
       <Container className="mt--7" fluid>
-      <form onSubmit={(e) => {
-            e.preventDefault();
-            console.log(e);
-            console.log(e.target['0'].value);
-            console.log(e.target['1'].value);
-
-            const formData = new FormData();
-            const title = e.target['0'].value;
-            const content = e.target['1'].value;
-            // const name = e.target['2'].value;
-            formData.append("title", title);
-            formData.append("content", content);
-            // formData.append("name", name);
-
-            axios({
-              url: 'http://loaclhost:8080/board/tableWrite',
-              method: 'post',
-              data: formData,
-            }).then((res) => {
-              console.log(res.data);
-              window.location = '/admin/tables';
-            });
-
-          }}>
         {/* Table */}
         <Row>
           <div className="col">
@@ -74,7 +50,35 @@ const TableWrite = () => {
                     <div class="container">
                       <h5 class="my-3 border-bottom pb-2">게시글 작성</h5>
                       <form method="post" class="post-form my-3"
-                        enctype="multipart/form-data">
+                        encType="multipart/form-data" onSubmit={(e) => {
+                          e.preventDefault();
+                          console.log(e);
+                          console.log(e.target['0'].value);
+                          console.log(e.target['1'].value);
+              
+                          const formData = new FormData();
+                          const title = e.target['0'].value;
+                          const content = e.target['1'].value;
+                          const userId = e.target['2'].value;
+                          // const nowDate = e.target['3'].value;
+                          formData.append("title", title);
+                          formData.append("content", content);
+                          formData.append("userId", userId);
+                          // formData.append("nowDate", nowDate);
+                          
+              
+                          axios({
+                            url: 'http://localhost:8080/board/tableWrite',
+                            method: 'post',
+                            data: formData,
+                          }).then((res) => {
+                            console.log(res.data);
+                            window.location = '/admin/tables';
+                          });
+              
+                        }
+                       
+                        }>
                         <div class="form-group">
                           <label for="title">제목</label>
                           <input type="text" class="form-control" name="title" id="title"></input>
@@ -87,6 +91,7 @@ const TableWrite = () => {
                           <label for="content">첨부파일</label>
                           <input type="file" name="image"></input>
                         </div>
+                        
                         
                           <button type="submit" class="btn btn-primary">저장하기</button>
                        
@@ -113,7 +118,6 @@ const TableWrite = () => {
 
         </Row>
 
-        </form>
 
         <Container>
       
