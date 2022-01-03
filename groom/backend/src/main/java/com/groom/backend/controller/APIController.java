@@ -1,45 +1,49 @@
-// package com.groom.backend.controller;
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.data.domain.Sort;
-// import org.springframework.data.domain.Sort.Order;
-// import org.springframework.stereotype.Controller;
 
-// import org.springframework.web.bind.annotation.CrossOrigin;
-// import org.springframework.web.bind.annotation.GetMapping;
+package com.groom.backend.controller;
 
-// import org.springframework.web.bind.annotation.RequestMapping;
-// import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Order;
+import org.springframework.stereotype.Controller;
 
 
-// import java.util.List;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+
+ import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
-// import javax.servlet.http.HttpSession;
+import java.util.List;
 
-// import com.groom.backend.model.Board;
-// import com.groom.backend.repository.BoardRepository;
-// import com.groom.backend.repository.UserRepository;
+import javax.servlet.http.HttpSession;
 
 
+ import com.groom.backend.model.Board;
+ import com.groom.backend.repository.BoardRepository;
+import com.groom.backend.repository.UserRepository;
 
-// @CrossOrigin
-// @Controller
-// @RequestMapping("/api")
-// public class APIController {
-// 	@Autowired
-// 	UserRepository userRepository;
 
-// 	@Autowired
-// 	BoardRepository boardRepository;
+@Controller
+@RequestMapping("/api")
+public class APIController {
+	@Autowired
+	UserRepository userRepository;
 
-// 	@Autowired
-// 	HttpSession session;
-	
-// 	@GetMapping("/tables")
-// 	@ResponseBody
-// 	public List<Board> boardList() {
-// 		Sort sort = Sort.by(Order.desc("id"));
-// 		List<Board> list = boardRepository.findAll(sort);
-// 		return list;
-// 	}
-// }
+
+@Autowired
+	BoardRepository boardRepository;
+
+
+	@Autowired
+	HttpSession session;
+
+	@GetMapping("/tables")
+	@ResponseBody
+	public List<Board> boardList() {
+		Sort sort = Sort.by(Order.desc("id"));
+		List<Board> list = boardRepository.findAll(sort);
+		return list;
+	}
+}
+
