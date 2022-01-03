@@ -1,21 +1,4 @@
-/*!
-
-=========================================================
-* Argon Dashboard React - v1.2.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-// reactstrap components
+/*eslint-disable */
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {
@@ -52,6 +35,30 @@ const TableWrite = () => {
       <Header />
       {/* Page content */}
       <Container className="mt--7" fluid>
+      <form onSubmit={(e) => {
+            e.preventDefault();
+            console.log(e);
+            console.log(e.target['0'].value);
+            console.log(e.target['1'].value);
+
+            const formData = new FormData();
+            const title = e.target['0'].value;
+            const content = e.target['1'].value;
+            // const name = e.target['2'].value;
+            formData.append("title", title);
+            formData.append("content", content);
+            // formData.append("name", name);
+
+            axios({
+              url: 'http://loaclhost:8080/board/tableWrite',
+              method: 'post',
+              data: formData,
+            }).then((res) => {
+              console.log(res.data);
+              window.location = '/admin/tables';
+            });
+
+          }}>
         {/* Table */}
         <Row>
           <div className="col">
@@ -80,57 +87,36 @@ const TableWrite = () => {
                           <label for="content">첨부파일</label>
                           <input type="file" name="image"></input>
                         </div>
-                        <Link to="/admin/tables">
+                        
                           <button type="submit" class="btn btn-primary">저장하기</button>
-                        </Link>
+                       
                       </form>
+                      
                     </div>
-                    {/*      
-      <div class="mb-3">
-        <label for="title">제목:</label>
-        <input type="text" class="form-control" id="title" name="title"></input>
-      </div>
-      <div class="mb-3">
-        <label for="content">내용:</label>
-        <textarea class="form-control" rows="10" name="content" id="content"></textarea>
-      </div>
-       */}
+     
                   </tr>
 
 
                 </tbody>
+                
 
               </Table>
+              
 
               <CardFooter className="py-4">
+                
 
               </CardFooter>
+              
             </Card>
           </div>
 
         </Row>
 
+        </form>
+
         <Container>
-          <form onSubmit={(e) => {
-            e.preventDefault();
-            const formData = new FormData();
-            const title = e.target['0'].value;
-            const content = e.target['1'].value;
-            const userId = e.target['2'].value;
-            formData.append("title", title);
-            formData.append("content", content);
-            formData.append("userId", userId);
-
-            axios({
-              url: 'http://127.0.0.1:8080/api/tableWrite',
-              method: 'post',
-              data: formData,
-            }).then((res) => {
-              console.log(res.data);
-              window.location = '/';
-            });
-
-          }}></form>
+      
         </Container>
       </Container>
     </>
