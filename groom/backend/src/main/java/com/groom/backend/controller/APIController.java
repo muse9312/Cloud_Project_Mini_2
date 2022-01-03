@@ -25,25 +25,25 @@ import com.groom.backend.repository.UserRepository;
 
 
 @Controller
-@RequestMapping("/api")
+@RequestMapping("/")
 public class APIController {
-	@Autowired
-	UserRepository userRepository;
+// 	@Autowired
+// 	UserRepository userRepository;
 
 
-@Autowired
-	BoardRepository boardRepository;
+// @Autowired
+// 	BoardRepository boardRepository;
 
 
-	@Autowired
-	HttpSession session;
+// 	@Autowired
+// 	HttpSession session;
 
-	@GetMapping("/tables")
-	@ResponseBody
-	public List<Board> boardList() {
-		Sort sort = Sort.by(Order.desc("id"));
-		List<Board> list = boardRepository.findAll(sort);
-		return list;
-	}
+// 	@GetMapping("/tables")
+// 	@ResponseBody
+// 	public List<Board> boardList() {
+// 		Sort sort = Sort.by(Order.desc("id"));
+// 		List<Board> list = boardRepository.findAll(sort);
+// 		return list;
+// 	}
 }
 

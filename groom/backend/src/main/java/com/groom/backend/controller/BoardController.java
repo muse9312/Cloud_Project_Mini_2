@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @CrossOrigin
 @Controller
-@RequestMapping("/api")
+@RequestMapping("/board")
 public class BoardController {
     @Autowired
     BoardRepository boardRepository;
@@ -48,15 +48,14 @@ public class BoardController {
 
 
     // //list
+    
+
+
     // @GetMapping("/tables")
-    // public String boardList(Model model) {
-    //     // Sort sort = Sort.by(Sort.Direction.DESC, "id");
-    //     // List<Board> list = boardRepository.findAll(sort);
-
-    //     Sort sort = Sort.by(Order.desc("id"));
-    //     List<Board> list = boardRepository.findAll(sort);
-
-    //     model.addAttribute("list", list);
-    //     return "tables";
-    // }
+	// @ResponseBody
+	// public List<Board> boardList() {
+	// 	Sort sort = Sort.by(Order.desc("id"));
+	// 	List<Board> list = boardRepository.findAll(sort);
+	// 	return list;
+	// }
 }

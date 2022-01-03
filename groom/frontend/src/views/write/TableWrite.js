@@ -37,7 +37,7 @@ const TableWrite = () => {
       <Container className="mt--7" fluid>
       <form onSubmit={(e) => {
             e.preventDefault();
-
+            console.log(e);
             console.log(e.target['0'].value);
             console.log(e.target['1'].value);
 
@@ -50,7 +50,7 @@ const TableWrite = () => {
             // formData.append("name", name);
 
             axios({
-              url: 'http://loaclhost:8080/api/tableWrite',
+              url: 'http://loaclhost:8080/board/tableWrite',
               method: 'post',
               data: formData,
             }).then((res) => {
