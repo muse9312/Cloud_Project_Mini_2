@@ -1,5 +1,9 @@
 /*eslint-disable*/
 
+import axios from "axios";
+import { useEffect, useState } from "react";
+import NewsContent from "./News/NewsContent";
+
 import {
   Badge,
   Card,
@@ -21,17 +25,42 @@ import {
 } from "reactstrap";
 // core components
 import CloudHeader from "components/Headers/CloudHeader.js";
-import NewsList from "./NewsList.js";
+
+import "../../assets/css/style.css";
+
 
 const Tables = () => {
 
+  const [newsArray, setNewsArray] = useState([]);
+  const [newsResults, setNewsResults] = useState();
+
+
+  const newsApi = async () => {
+    try {
+
+
+      const news = await axios.get(
+        `https://newsapi.org/v2/top-headlines?country=us&apiKey=1269ddcc25814aec9cb99df554126760&category=technology&pageSize=5`
+      );
+      // console.log(news);
+      setNewsArray(news.data.articles);
+      setNewsResults(news.data.totalResults);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    newsApi();
+    // eslint-disable-next-line
+  }, [newsResults]);
 
 
   return (
     <>
       <CloudHeader />
       {/* Page content */}
-      <Container className="mt--7" fluid >
+      <Container className="mt--7" fluid id="New_box" >
         {/* Table */}
         <Row>
           <div className="col">
@@ -41,7 +70,14 @@ const Tables = () => {
               </CardHeader>
               <Table className="align-items-center table-flush" responsive>
 
-                <NewsList />
+                <div className="App" id="#home">
+                  {newsResults && (
+                    <NewsContent
+                      newsArray={newsArray}
+                      newsResults={newsResults}
+                    />
+                  )}
+                </div>
 
               </Table>
               <CardFooter className="py-4">
