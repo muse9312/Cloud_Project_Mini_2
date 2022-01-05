@@ -7,8 +7,9 @@ import Tables from "views/board/Tables.js";
 import Notice from "views/board/Notice.js";
 import Register from "views/examples/Register.js";
 import TableWrite from "views/write/TableWrite.js";
-// import Ananymous from "views/board/Ananymous.js"
-//import Dropdown  from "views/board/Dropdown";
+
+import BoardDetail from "views/board/BoardDetail";
+
 
 var routes = [
   {
@@ -29,9 +30,23 @@ var routes = [
 
   {
     path: "/tables",
-    name: "게시판",
+    name: "익명게시판",
     icon: "ni ni-bullet-list-67 text-blue",
     component: Tables,
+    layout: "/admin",
+  },
+  {
+    path: "/tables",
+    name: "자유게시판",
+    icon: "ni ni-bullet-list-67 text-blue",
+    component: Tables,
+    layout: "/admin",
+  },
+  {
+    path: "/tables",
+    name: "질문게시판",
+    icon: "ni ni-bullet-list-67 text-blue",
+    component: BoardDetail,
     layout: "/admin",
   },
 
@@ -87,6 +102,7 @@ var routes = [
     component: TableWrite,
     layout: "/admin",
   },
+
 ];
 
 export default routes;

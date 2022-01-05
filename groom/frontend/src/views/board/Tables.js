@@ -1,5 +1,7 @@
 /*eslint-disable*/
-
+import axios from 'axios';
+import { Link } from "react-router-dom";
+import { useEffect, useState } from 'react';
 import {
   Badge,
   Card,
@@ -24,8 +26,22 @@ import Header from "components/Headers/Header.js";
 import Dropdown from "./Dropdown";
 
 
-const Tables = () => {
-  // const [dropdown, setdropdown] = useState(false);
+// const Tables = () => {
+const Tables = (props) => {
+
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    axios({
+      url: 'http://localhost:8080/board/tables',
+      method: 'get'
+    }).then((res) => {
+      console.log(res.data);
+      setList(res.data);
+    });
+  }, []); // deps
+
+
 
   return (
     <>
@@ -43,10 +59,9 @@ const Tables = () => {
                 <thead className="thead-light">
                   <tr>
 
-
+                    <th scope="col">순서</th>
                     <th scope="col">제목</th>
                     <th scope="col">작성자</th>
-                    <th scope="col">작성일</th>
                     <th scope="col">조회</th>
                     <th scope="col">좋아요</th>
                     <th scope="col" />
@@ -54,10 +69,19 @@ const Tables = () => {
 
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
 
-                  </tr>
+
+                <tbody>
+                  {list.map((v) => {
+                    return (
+                      <tr>
+                        <td>{v.id}</td>
+                        <td>{v.title}</td>
+                        <td>{v.userId}</td>
+                        {/* <td>{v.nowDate}</td> */}
+                      </tr>
+                    );
+                  })}
 
 
                 </tbody>
@@ -65,12 +89,18 @@ const Tables = () => {
 
               </Table>
               <CardFooter className="py-4">
+
                 <nav aria-label="...">
+
                   <Pagination
                     className="pagination justify-content-end mb-0"
                     listClassName="justify-content-end mb-0"
                   >
-                    <button type="button" class="btn btn-primary btn-block" id="write-btn">글쓰기</button>
+                    <>
+                      <Link to="/admin/tableWrite">
+                        <button type="button" class="btn btn-primary btn-block" id="write-btn">글쓰기</button>
+                      </Link>
+                    </>
                     <PaginationItem className="disabled">
                       <PaginationLink
                         href="#pablo"
