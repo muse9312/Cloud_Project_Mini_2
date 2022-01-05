@@ -15,7 +15,16 @@ import {
   Col,
 } from "reactstrap";
 
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+
 const Register = () => {
+
+  function BackLogin(e) {
+    e.preventDefault();
+    window.location.href = "/auth/login"
+
+  }
 
   function SendData(e) {
     e.preventDefault();
@@ -41,7 +50,18 @@ const Register = () => {
     })
       .then(function (res) {
         console.log(res.data);
+        if (res.data.code === 200) {
+          <Stack sx={{ width: '100%' }} spacing={2}>
+            <Alert severity="success">
+              <AlertTitle>Success</AlertTitle><strong>회원가입 성공!!</strong>
+            </Alert>
+          </Stack>
+
+
+        }
+
         window.location = '/';
+
       })
 
 
@@ -156,6 +176,23 @@ const Register = () => {
             </Form>
           </CardBody>
         </Card>
+
+        <Row className="mt-3">
+
+
+
+          <Col className="text-right" xs="7">
+
+
+            <a
+              className="text-light"
+              href="/auth/register"
+              onClick={BackLogin}
+            >
+              <small>Back to Login</small>
+            </a>
+          </Col>
+        </Row>
       </Col>
     </>
   );

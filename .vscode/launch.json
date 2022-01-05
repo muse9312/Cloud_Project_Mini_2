@@ -2,6 +2,7 @@
     "configurations": [
         {
             "type": "java",
+
             "name": "Launch BackendApplication",
             "request": "launch",
             "mainClass": "com.groom.backend.BackendApplication",

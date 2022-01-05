@@ -10,6 +10,7 @@ import TableWrite from "views/write/TableWrite.js";
 
 import BoardDetail from "views/board/BoardDetail";
 
+import Profile from "views/examples/Profile.js";
 
 var routes = [
   {
@@ -42,13 +43,8 @@ var routes = [
     component: Tables,
     layout: "/admin",
   },
-  {
-    path: "/tables",
-    name: "질문게시판",
-    icon: "ni ni-bullet-list-67 text-blue",
-    component: BoardDetail,
-    layout: "/admin",
-  },
+
+
 
   // {
   //   path: "/ananymous",
@@ -60,7 +56,7 @@ var routes = [
 
   {
     path: "/cloudNews",
-    name: "클라우드 뉴스",
+    name: "최신 기술 뉴스",
     icon: "ni ni-cloud-upload-96 text-blue",
     component: CloudNews,
     layout: "/admin",
@@ -77,19 +73,33 @@ var routes = [
 
 
 
+
+
+
+
   // ========================================  Logout ========================================
   <br />, <br />, <br />, <br />, <br />, <br />,
   <br />, <br />, <br />, <br />, <br />, <br />,
-  <br />, <br />, <br />, <br />, <br />,
+
+
+
 
   {
     path: "/login",
-    name: "Logout",
-    icon: "ni ni-user-run text-pink",
     component: Login,
     layout: "/auth",
   },
 
+  {
+    path: "/tableDetail",
+    component: BoardDetail,
+    layout: "/admin",
+  },
+  {
+    path: "/user-profile",
+    component: Profile,
+    layout: "/admin",
+  },
 
   {
     path: "/register",

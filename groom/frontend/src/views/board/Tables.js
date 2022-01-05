@@ -72,19 +72,26 @@ const Tables = (props) => {
 
 
                 <tbody>
+
                   {list.map((v) => {
                     return (
                       <tr>
                         <td>{v.id}</td>
-                        <td>{v.title}</td>
+                        <td>
+                          <a href={`/admin/tableDetail/${v.id}`}>
+                            {v.title}
+
+                          </a>
+                        </td>
                         <td>{v.userId}</td>
-                        {/* <td>{v.nowDate}</td> */}
+                        {/* <td>{v.nowDate}</td>  */}
                       </tr>
                     );
                   })}
 
 
                 </tbody>
+
 
 
               </Table>

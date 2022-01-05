@@ -23,8 +23,22 @@ import {
 // core components
 import Header from "components/Headers/Header.js";
 import { Link } from 'react-router-dom';
+import BoardDetail from './BoardDetail';
 
-const TableWrite = () => {
+const TableUpdate = ({board_id}) => {
+
+  const [board, setBoard] = useState([]);
+  useEffect(() => {
+    axios({
+      url: 'http://localhost:8080/board/table/update',
+      method: 'get',
+      params: {  id: board_id}
+    }).then((res) => {
+      console.log(res.data);
+      setBoard(res.data);
+    });
+  }, []);
+
 
   return (
 
@@ -65,12 +79,14 @@ const TableWrite = () => {
                           
               
                           axios({
-                            url: 'http://localhost:8080/board/tableWrite',
+                            url: 'http://localhost:8080/board/table/update',
                             method: 'post',
                             data: formData,
                           }).then((res) => {
                             console.log(res.data);
-                            window.location = '/admin/tables';
+                          
+                            // window.location = '/admin/tableDetail/' + board_id;
+                            window.location = `/admin/tableDetail/${board_id}`;
                           });
               
                         }
@@ -78,20 +94,20 @@ const TableWrite = () => {
                         }>
                         <div class="form-group">
                           <label for="title">제목</label>
-                          <input type="text" class="form-control" name="title" id="title"></input>
+                          <input type="text" class="form-control" name="title" id="title" value={board.title}></input>
                         </div>
                         <div class="form-group">
                           <label for="content">내용</label>
-                          <textarea class="form-control" name="content" id="content" rows="10"></textarea>
+                          <textarea class="form-control" name="content" id="content" rows="10">{board.content}</textarea>
                         </div>
                         <div class="form-group">
                           <label for="content">첨부파일</label>
                           <input type="file" name="image"></input>
                         </div>
                         
-                        
-                          <button type="submit" class="btn btn-primary">등록</button>
-                       
+                        <Link to={`/admin/tableDetail/${id}`}>
+                          <button type="submit" class="btn btn-primary">수정완료</button>
+                       </Link>
                       </form>
                       
                     </div>
@@ -126,4 +142,4 @@ const TableWrite = () => {
 };
 
 
-export default TableWrite;
+export default TableUpdate;

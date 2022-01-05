@@ -13,7 +13,12 @@ import {
   InputGroup,
   Row,
   Col,
+
 } from "reactstrap";
+
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+import AlertTitle from '@mui/material/AlertTitle';
 
 
 
@@ -63,11 +68,18 @@ const Login = () => {
     }).then(function (res) {
       console.log(res.data);
       if (res.data.code === 200) {
-        alert('로그인성공');
+        <Stack sx={{ width: '100%' }} spacing={2}>
+          <Alert severity="success">
+            <AlertTitle>Success</AlertTitle><strong>로그인 성공!!</strong>
+          </Alert>
+        </Stack>
 
         window.location = '/admin/index';
 
       } else {
+        <Alert severity="error">
+          <AlertTitle>Error</AlertTitle><strong>이메일과 비밀번호를 확인해주세요!!</strong>
+        </Alert>
         alert('이메일과 비밀번호를 확인해주세요');
       }
     })

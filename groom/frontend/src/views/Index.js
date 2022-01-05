@@ -4,12 +4,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+
+
+
+
 // node.js library that concatenates classes (strings)
 import classnames from "classnames";
 // javascipt plugin for creating charts
 import Chart from "chart.js";
 // react plugin used to create charts
 import { Line, Bar } from "react-chartjs-2";
+
+
 // reactstrap components
 import {
   Button,
@@ -35,11 +41,20 @@ import {
 } from "variables/charts.js";
 
 import Header from "components/Headers/Header.js";
+
 import { LanguageVariant } from "typescript";
 
 import { BrowserRouter, Route } from 'react-router-dom';
 
+import NewsMainContent from "./board/News/NewsMain/NewsMainContent.js"
+
+
 const Index = (props) => {
+
+  const [newsMainArray, setNewsMainArray] = useState([]);
+  const [newsMainResults, setNewsMainResults] = useState();
+
+
   const [activeNav, setActiveNav] = useState(1);
   const [chartExample1Data, setChartExample1Data] = useState("data1");
 
@@ -52,6 +67,7 @@ const Index = (props) => {
     setActiveNav(index);
     setChartExample1Data("data" + index);
   };
+
 
 
   /* 스프링 서버로부터 게시글 목록 가져오기 - useEffect() + AJAX */
@@ -70,6 +86,34 @@ const Index = (props) => {
 
 
 
+  const newsApi = async () => {
+    try {
+
+
+      const news = await axios.get(
+        `https://newsapi.org/v2/top-headlines?country=us&apiKey=1269ddcc25814aec9cb99df554126760&category=technology&pageSize=1`
+      );
+      // console.log(news);
+      setNewsMainArray(news.data.articles);
+      setNewsMainResults(news.data.totalResults);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    newsApi();
+    // eslint-disable-next-line
+  }, [newsMainResults]);
+
+  function NewsBtn(e) {
+    e.preventDefault();
+    window.location.href = "/admin/cloudNews"
+
+
+  }
+
+
   return (
     <>
       <Header />
@@ -84,43 +128,30 @@ const Index = (props) => {
                     <h6 className="text-uppercase text-light ls-1 mb-1">
                       Overview
                     </h6>
-                    <h2 className="text-white mb-0">뉴스 업데이트</h2>
+                    <h2 className="text-white mb-0">최신 기술 뉴스</h2>
                   </div>
-                  <div className="col">
-                    <Nav className="justify-content-end" pills>
-                      <NavItem>
-                        <NavLink
-                          className={classnames("py-2 px-3", {
-                            active: activeNav === 1,
-                          })}
-                          href="#pablo"
-                          onClick={(e) => toggleNavs(e, 1)}
-                        >
-                          <span className="d-none d-md-block">Month</span>
-                          <span className="d-md-none">M</span>
-                        </NavLink>
-                      </NavItem>
-                      <NavItem>
-                        <NavLink
-                          className={classnames("py-2 px-3", {
-                            active: activeNav === 2,
-                          })}
-                          data-toggle="tab"
-                          href="#pablo"
-                          onClick={(e) => toggleNavs(e, 2)}
-                        >
-                          <span className="d-none d-md-block">Week</span>
-                          <span className="d-md-none">W</span>
-                        </NavLink>
-                      </NavItem>
-                    </Nav>
+                  <div className="col text-right " id="Newsbtn">
+                    <Button
+                      color="primary"
+                      href="#pablo"
+                      onClick={NewsBtn}
+                      size="sm"
+                    >
+                      See all
+                    </Button>
                   </div>
                 </Row>
+
+
               </CardHeader>
               <CardBody>
-                {/* Chart */}
-                <div className="chart">
-
+                <div className="App" id="#home">
+                  {newsMainResults && (
+                    <NewsMainContent
+                      newsMainArray={newsMainArray}
+                      newsMainResults={newsMainResults}
+                    />
+                  )}
                 </div>
               </CardBody>
             </Card>
