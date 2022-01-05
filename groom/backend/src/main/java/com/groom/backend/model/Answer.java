@@ -24,8 +24,8 @@ public class Answer {
     // public void setBoard(Board board) {
     // }
 	
-	// @ManyToOne
-	// User user;
+	@ManyToOne
+	User user;
 	
 	@ManyToOne
 	Board board;

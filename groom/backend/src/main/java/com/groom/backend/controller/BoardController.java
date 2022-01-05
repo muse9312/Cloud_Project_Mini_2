@@ -14,6 +14,7 @@ import com.groom.backend.repository.AnswerRepository;
 import com.groom.backend.repository.BoardRepository;
 
 import org.aspectj.weaver.patterns.TypePatternQuestions.Question;
+import org.hibernate.annotations.Tables;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
@@ -40,8 +41,7 @@ public class BoardController {
     @Autowired
     HttpSession session;
 
-
-    //write
+    // write
     @GetMapping("/tableWrite")
     public String tableWrite() {
         return "tableWrite";
@@ -58,14 +58,14 @@ public class BoardController {
 
         return board;
     }
-	
+
     @GetMapping("/answer")
-        @ResponseBody
-        public List<Answer> answerList(@ModelAttribute Answer answer, Long board_id){
-          Board board = boardRepository.findById(board_id).get();
-            Sort sort = Sort.by(Order.desc("id"));
-            List<Answer> list = answerRepository.findByBoard(board, sort);
-            return list;
+    @ResponseBody
+    public List<Answer> answerList(@ModelAttribute Answer answer, Long board_id) {
+        Board board = boardRepository.findById(board_id).get();
+        Sort sort = Sort.by(Order.desc("id"));
+        List<Answer> list = answerRepository.findByBoard(board, sort);
+        return list;
     }
 
     @PostMapping("/answer")
@@ -79,75 +79,60 @@ public class BoardController {
         answer.setBoard(board);
         answerRepository.save(answer);
 
-
         return answer;
     }
 
-
     // //list
-    
-
 
     @GetMapping("/tables")
-	@ResponseBody
-	public List<Board> boardList() {
-		Sort sort = Sort.by(Order.desc("id"));
-		List<Board> list = boardRepository.findAll(sort);
-		return list;
+    @ResponseBody
+    public List<Board> boardList() {
+        Sort sort = Sort.by(Order.desc("id"));
+        List<Board> list = boardRepository.findAll(sort);
+        return list;
 
-	}
+    }
+
     @GetMapping("/table/detail")
     @ResponseBody
-	public Board boardDetail(Model model, Long id) {
-		Optional<Board> opt = boardRepository.findById(id);
-		
-		return opt.get();
+    public Board boardDetail(Model model, Long id) {
+        Optional<Board> opt = boardRepository.findById(id);
+
+        return opt.get();
+    }
+
+    //수정 
+    @GetMapping("/table/update")
+    @ResponseBody
+	public String boardUpdate(Model model, @PathVariable("id") long id) {
+		Optional<Board> data = boardRepository.findById(id);
+		Board board = data.get();
+		model.addAttribute("board", board);
+		return "table/update";
 	}
 
-    // @GetMapping("/board/{id}")
-	// public String boardView(Model model, @PathVariable("id") long id) {
-	// 	Optional<Board> data = boardRepository.findById(id);
-	// 	Board board = data.get();
-	// 	model.addAttribute("board", board);
-	// 	return ;
-	// }
-    // @GetMapping("/posts/read/{id}") 
-    // public String read(@PathVariable Long id, Model model) 
-    // { PostsResponseDto dto = postsService.findById(id); postsService.updateView(id); // views ++ model.addAttribute("posts", dto); return "posts-read"; }
+    @PostMapping("/table/update")
+    @ResponseBody
+    public Board tableUpdate(
+            @ModelAttribute Board board, @PathVariable("id") long id) {
+        User user = (User) session.getAttribute("user_info");
+        // String userId = user.getEmail();
+        String userId = "익명";
+        // String content = board.getContent();
+        board.setUserId(userId);
+        board.setId(id);
+        // board.setContent(content);
+        boardRepository.save(board);
+        return board;
+    }
 
 
-    //수정 삭제
-    
-	// @GetMapping("/board/delete/{id}")
-	// public String boardDelete(@PathVariable("id") long id) {
-	// 	boardRepository.deleteById(id);
-	// 	return "redirect:/board/list";
-	// }
+    //삭제
 
-	// @GetMapping("/board/update/{id}")
-	// public String boardUpdate(Model model, @PathVariable("id") long id) {
-	// 	Optional<Board> data = boardRepository.findById(id);
-	// 	Board board = data.get();
-	// 	model.addAttribute("board", board);
-	// 	return "board/update";
-	// }
-		
-	// @PostMapping("/board/update/{id}")
-	// public String boardUpdate(
-	// 		@ModelAttribute Board board, @PathVariable("id") long id) {
-	// 	User user = (User) session.getAttribute("user_info");
-	// 	String userId = user.getEmail();
-	// 	board.setUserId(userId);
-	// 	board.setId(id);
-	// 	boardRepository.save(board);
-	// 	return "redirect:/board/" + id;
-	// }
+    // @GetMapping("/table/delete/{id}")
+    // public String tableDelete(@PathVariable("id") long id) {
+    //     boardRepository.deleteById(id);
+    //     return ;
+    // }
 
-	// @GetMapping("/board/{id}")
-	// public String boardView(Model model, @PathVariable("id") long id) {
-	// 	Optional<Board> data = boardRepository.findById(id);
-	// 	Board board = data.get();
-	// 	model.addAttribute("board", board);
-	// 	return "board/view";
-   
 }

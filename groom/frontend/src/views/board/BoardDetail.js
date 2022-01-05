@@ -1,3 +1,4 @@
+/*eslint-disable */
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import {
@@ -145,9 +146,13 @@ const BoardDetail = () => {
                     <textarea class="form-control" name="content" id="content" rows="5" placeholder="댓글을 남겨보세요"></textarea>
                   </div>
 
-                  <button type="submit" class="btn btn-primary">댓글등록</button>  
-                  <button type="button" class="btn btn-primary">수정</button>  
-                  <button type="button" class="btn btn-primary">삭제</button>  
+                  <button type="submit" class="btn btn-primary">댓글등록</button> 
+
+                 
+                  <button type="button" class="btn btn-primary" onClick={()=>{
+                    window.location= "admin/tableUpdate"}}>수정 </button>
+                   
+                  <button type="button" class="btn btn-primary">삭제</button> 
                    <Link to="/admin/tables">   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
                         &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
                         &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
@@ -182,17 +187,6 @@ const BoardDetail = () => {
 
   );
 };
-
-      
- 
-  
-  
- 
-
-
-export default BoardDetail;
-
-
 
 const Answer = ({id}) => {
   const [list, setList] = useState([]);
@@ -229,5 +223,10 @@ const Answer = ({id}) => {
 
 
     </tbody>
+ 
   )
 }
+
+
+export default BoardDetail;
+
