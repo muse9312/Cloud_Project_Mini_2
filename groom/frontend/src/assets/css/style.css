@@ -1,3 +1,11 @@
 #New_box {
     margin-top: -10rem !important; 
 }
+
+#Newsbtn {
+    margin-top: 1rem;
+    padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  border-radius: 0.375rem; 
+}

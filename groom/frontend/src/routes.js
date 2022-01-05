@@ -8,7 +8,7 @@ import Notice from "views/board/Notice.js";
 import Register from "views/examples/Register.js";
 import TableWrite from "views/write/TableWrite.js";
 import BoardDetail from "views/board/BoardDetail";
-
+import Profile from "views/examples/Profile.js";
 var routes = [
   {
     path: "/index",
@@ -24,7 +24,7 @@ var routes = [
     component: Notice,
     layout: "/admin",
   },
-  
+
   {
     path: "/tables",
     name: "익명게시판",
@@ -39,12 +39,12 @@ var routes = [
     component: Tables,
     layout: "/admin",
   },
-  
- 
+
+
 
   {
     path: "/cloudNews",
-    name: "클라우드 뉴스",
+    name: "최신 기술 뉴스",
     icon: "ni ni-cloud-upload-96 text-blue",
     component: CloudNews,
     layout: "/admin",
@@ -56,33 +56,32 @@ var routes = [
     component: Quiz,
     layout: "/admin",
   },
- 
+
+
+
 
 
 
   // ========================================  Logout ========================================
   <br />, <br />, <br />, <br />, <br />, <br />,
   <br />, <br />, <br />, <br />, <br />, <br />,
-  <br />, <br />, <br />, <br />, <br />,
-  
+
+
   {
     path: "/login",
-    name: "Logout",
-    icon: "ni ni-user-run text-pink",
     component: Login,
     layout: "/auth",
   },
-
-
   {
     path: "/tableDetail",
     component: BoardDetail,
     layout: "/admin",
   },
-
-
-
-
+  {
+    path: "/user-profile",
+    component: Profile,
+    layout: "/admin",
+  },
   {
     path: "/register",
     component: Register,
@@ -93,6 +92,6 @@ var routes = [
     component: TableWrite,
     layout: "/admin",
   },
-  
+
 ];
 export default routes;
