@@ -1,21 +1,6 @@
-/*!
-
-=========================================================
-* Argon Dashboard React - v1.2.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
+/*eslint-disable */
 import { Link } from "react-router-dom";
+import axios from 'axios';
 // reactstrap components
 import {
   DropdownMenu,
@@ -33,8 +18,11 @@ import {
   Container,
   Media,
 } from "reactstrap";
+import { useEffect, useState } from 'react';
 
 const AdminNavbar = (props) => {
+
+
   function LogoutClick(e) {
     e.preventDefault();
     window.location.href = "/auth/login"
@@ -66,19 +54,15 @@ const AdminNavbar = (props) => {
             <UncontrolledDropdown nav>
               <DropdownToggle className="pr-0" nav>
                 <Media className="align-items-center">
-                  <span className="avatar avatar-sm rounded-circle">
-                    <img
-                      alt="..."
-                      src={
-                        require("../../assets/img/theme/team-4-800x800.jpg")
-                          .default
-                      }
-                    />
-                  </span>
                   <Media className="ml-2 d-none d-lg-block">
-                    <span className="mb-0 text-sm font-weight-bold">
-                      Jessica Jones
-                    </span>
+                    <tbody>
+
+
+                      <tr>
+                        <span className="mb-0 text-sm font-weight-bold">{sessionStorage.getItem('name')}</span>
+                      </tr>
+                    </tbody>
+
                   </Media>
                 </Media>
               </DropdownToggle>
