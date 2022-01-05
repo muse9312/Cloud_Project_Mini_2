@@ -1,15 +1,21 @@
-/** eslint-disable-next-line */
+/*eslint-disable*/
+
+
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 
 
 
-import { useState } from "react";
+
 // node.js library that concatenates classes (strings)
 import classnames from "classnames";
 // javascipt plugin for creating charts
 import Chart from "chart.js";
 // react plugin used to create charts
 import { Line, Bar } from "react-chartjs-2";
+
+
 // reactstrap components
 import {
   Button,
@@ -36,7 +42,19 @@ import {
 
 import Header from "components/Headers/Header.js";
 
+import { LanguageVariant } from "typescript";
+
+import { BrowserRouter, Route } from 'react-router-dom';
+
+import NewsMainContent from "./board/News/NewsMain/NewsMainContent.js"
+
+
 const Index = (props) => {
+
+  const [newsMainArray, setNewsMainArray] = useState([]);
+  const [newsMainResults, setNewsMainResults] = useState();
+
+
   const [activeNav, setActiveNav] = useState(1);
   const [chartExample1Data, setChartExample1Data] = useState("data1");
 
@@ -49,6 +67,53 @@ const Index = (props) => {
     setActiveNav(index);
     setChartExample1Data("data" + index);
   };
+
+
+
+  /* 스프링 서버로부터 게시글 목록 가져오기 - useEffect() + AJAX */
+  const [list, setList] = useState([]);
+
+  useEffect(() => {
+    axios({
+      url: 'http://localhost:8080/board/tables',
+      method: 'get'
+    }).then((res) => {
+      console.log(res.data);
+      setList(res.data);
+    });
+  }, []); // deps
+  /* 스프링 서버로부터 게시글 목록 가져오기 - useEffect() + AJAX */
+
+
+
+  const newsApi = async () => {
+    try {
+
+
+      const news = await axios.get(
+        `https://newsapi.org/v2/top-headlines?country=us&apiKey=1269ddcc25814aec9cb99df554126760&category=technology&pageSize=1`
+      );
+      // console.log(news);
+      setNewsMainArray(news.data.articles);
+      setNewsMainResults(news.data.totalResults);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    newsApi();
+    // eslint-disable-next-line
+  }, [newsMainResults]);
+
+  function NewsBtn(e) {
+    e.preventDefault();
+    window.location.href = "/admin/cloudNews"
+
+
+  }
+
+
   return (
     <>
       <Header />
@@ -63,43 +128,30 @@ const Index = (props) => {
                     <h6 className="text-uppercase text-light ls-1 mb-1">
                       Overview
                     </h6>
-                    <h2 className="text-white mb-0">뉴스 업데이트</h2>
+                    <h2 className="text-white mb-0">최신 기술 뉴스</h2>
                   </div>
-                  <div className="col">
-                    <Nav className="justify-content-end" pills>
-                      <NavItem>
-                        <NavLink
-                          className={classnames("py-2 px-3", {
-                            active: activeNav === 1,
-                          })}
-                          href="#pablo"
-                          onClick={(e) => toggleNavs(e, 1)}
-                        >
-                          <span className="d-none d-md-block">Month</span>
-                          <span className="d-md-none">M</span>
-                        </NavLink>
-                      </NavItem>
-                      <NavItem>
-                        <NavLink
-                          className={classnames("py-2 px-3", {
-                            active: activeNav === 2,
-                          })}
-                          data-toggle="tab"
-                          href="#pablo"
-                          onClick={(e) => toggleNavs(e, 2)}
-                        >
-                          <span className="d-none d-md-block">Week</span>
-                          <span className="d-md-none">W</span>
-                        </NavLink>
-                      </NavItem>
-                    </Nav>
+                  <div className="col text-right " id="Newsbtn">
+                    <Button
+                      color="primary"
+                      href="#pablo"
+                      onClick={NewsBtn}
+                      size="sm"
+                    >
+                      See all
+                    </Button>
                   </div>
                 </Row>
+
+
               </CardHeader>
               <CardBody>
-                {/* Chart */}
-                <div className="chart">
-
+                <div className="App" id="#home">
+                  {newsMainResults && (
+                    <NewsMainContent
+                      newsMainArray={newsMainArray}
+                      newsMainResults={newsMainResults}
+                    />
+                  )}
                 </div>
               </CardBody>
             </Card>
@@ -116,6 +168,7 @@ const Index = (props) => {
                   </div>
                 </Row>
               </CardHeader>
+
               <CardBody>
                 {/* Chart */}
                 <div className="chart">
@@ -128,6 +181,10 @@ const Index = (props) => {
             </Card>
           </Col>
         </Row>
+
+        {/* 최신게시글 목록 */}
+        {/* ///////////////////// */}
+
         <Row className="mt-5">
           <Col className="mb-5 mb-xl-0" xl="8">
             <Card className="shadow">
@@ -136,83 +193,62 @@ const Index = (props) => {
                   <div className="col">
                     <h3 className="mb-0">새로 등록된 게시글</h3>
                   </div>
-                  <div className="col text-right">
-                    <Button
+
+                  {/* <div className="col text-right">
+                    { <Button
                       color="primary"
                       href="#pablo"
                       onClick={(e) => e.preventDefault()}
                       size="sm"
                     >
                       See all
-                    </Button>
-                  </div>
+                    </Button> }
+                  </div> */}
+
                 </Row>
               </CardHeader>
+
               <Table className="align-items-center table-flush" responsive>
+
                 <thead className="thead-light">
                   <tr>
-                    <th scope="col">Page name</th>
-                    <th scope="col">Visitors</th>
-                    <th scope="col">Unique users</th>
-                    <th scope="col">Bounce rate</th>
+
+                    <th scope="col">게시글번호</th>
+                    <th scope="col">제목</th>
+                    <th scope="col">작성자</th>
+
                   </tr>
                 </thead>
+
                 <tbody>
-                  <tr>
-                    <th scope="row">/argon/</th>
-                    <td>4,569</td>
-                    <td>340</td>
-                    <td>
-                      <i className="fas fa-arrow-up text-success mr-3" /> 46,53%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">/argon/index.html</th>
-                    <td>3,985</td>
-                    <td>319</td>
-                    <td>
-                      <i className="fas fa-arrow-down text-warning mr-3" />{" "}
-                      46,53%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">/argon/charts.html</th>
-                    <td>3,513</td>
-                    <td>294</td>
-                    <td>
-                      <i className="fas fa-arrow-down text-warning mr-3" />{" "}
-                      36,49%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">/argon/tables.html</th>
-                    <td>2,050</td>
-                    <td>147</td>
-                    <td>
-                      <i className="fas fa-arrow-up text-success mr-3" /> 50,87%
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">/argon/profile.html</th>
-                    <td>1,795</td>
-                    <td>190</td>
-                    <td>
-                      <i className="fas fa-arrow-down text-danger mr-3" />{" "}
-                      46,53%
-                    </td>
-                  </tr>
+
+                  {list.map((v) => {
+                    return (
+                      <tr>
+                        <th scope="row">{v.id}</th>
+                        <th scope="row">{v.title}</th>
+                        <th scope="row">{v.userId}</th>
+                      </tr>
+                    );
+                  })}
+
                 </tbody>
+
               </Table>
             </Card>
           </Col>
+
+
+          {/* 과정 시간표///////////// */}
           <Col xl="4">
             <Card className="shadow">
               <CardHeader className="border-0">
                 <Row className="align-items-center">
                   <div className="col">
-                    <h3 className="mb-0">Social traffic</h3>
+                    <h3 className="mb-0">과정 일정표</h3>
                   </div>
-                  <div className="col text-right">
+
+                  {/* <div className="col text-right">
                     <Button
                       color="primary"
                       href="#pablo"
@@ -221,94 +257,52 @@ const Index = (props) => {
                     >
                       See all
                     </Button>
-                  </div>
+                  </div> */}
+
                 </Row>
               </CardHeader>
+
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
+
                   <tr>
-                    <th scope="col">Referral</th>
-                    <th scope="col">Visitors</th>
-                    <th scope="col" />
+                    <th scope="col">과정(강사님)</th>
+                    <th scope="col">날짜</th>
+                    {/* <th scope="col" /> */}
                   </tr>
                 </thead>
                 <tbody>
+
                   <tr>
-                    <th scope="row">Facebook</th>
-                    <td>1,480</td>
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <span className="mr-2">60%</span>
-                        <div>
-                          <Progress
-                            max="100"
-                            value="60"
-                            barClassName="bg-gradient-danger"
-                          />
-                        </div>
-                      </div>
-                    </td>
+                    <th scope="row">사용자인터페이스개발을위한리액트프로그래밍(김남현)</th>
+                    <td>12/5-12/16</td>
                   </tr>
+
                   <tr>
-                    <th scope="row">Facebook</th>
-                    <td>5,480</td>
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <span className="mr-2">70%</span>
-                        <div>
-                          <Progress
-                            max="100"
-                            value="70"
-                            barClassName="bg-gradient-success"
-                          />
-                        </div>
-                      </div>
-                    </td>
+                    <th scope="row">마이크로서비스개발을위한springboo/spring security(김남현)</th>
+                    <td>12/19-12/31</td>
                   </tr>
+
                   <tr>
-                    <th scope="row">Google</th>
-                    <td>4,807</td>
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <span className="mr-2">80%</span>
-                        <div>
-                          <Progress max="100" value="80" />
-                        </div>
-                      </div>
-                    </td>
+                    <th scope="row">모듈프로젝트2(김남현)</th>
+                    <td>1/3-1/7</td>
                   </tr>
+
                   <tr>
-                    <th scope="row">Instagram</th>
-                    <td>3,678</td>
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <span className="mr-2">75%</span>
-                        <div>
-                          <Progress
-                            max="100"
-                            value="75"
-                            barClassName="bg-gradient-info"
-                          />
-                        </div>
-                      </div>
-                    </td>
+                    <th scope="row">테스트주도개발/도메인주도개발/행동주도개발(김남현)</th>
+                    <td>1/10-1/12</td>
                   </tr>
+
                   <tr>
-                    <th scope="row">twitter</th>
-                    <td>2,645</td>
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <span className="mr-2">30%</span>
-                        <div>
-                          <Progress
-                            max="100"
-                            value="30"
-                            barClassName="bg-gradient-warning"
-                          />
-                        </div>
-                      </div>
-                    </td>
+                    <th scope="row">멘토링(멘토)</th>
+                    <td>1/22</td>
                   </tr>
+
+                  <tr>
+                    <th scope="row">마이크로서비스환경구축을위한클라우드기본기술(홍혜선)</th>
+                    <td>1/13-1/28</td>
+                  </tr>
+
                 </tbody>
               </Table>
             </Card>
