@@ -15,8 +15,7 @@ import {
   Col,
 } from "reactstrap";
 
-import Alert from '@mui/material/Alert';
-import Stack from '@mui/material/Stack';
+
 
 const Register = () => {
 
@@ -51,11 +50,7 @@ const Register = () => {
       .then(function (res) {
         console.log(res.data);
         if (res.data.code === 200) {
-          <Stack sx={{ width: '100%' }} spacing={2}>
-            <Alert severity="success">
-              <AlertTitle>Success</AlertTitle><strong>회원가입 성공!!</strong>
-            </Alert>
-          </Stack>
+         alter('회원가입 성공')
 
 
         }
