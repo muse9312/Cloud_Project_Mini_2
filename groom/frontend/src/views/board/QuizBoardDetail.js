@@ -24,20 +24,20 @@ import {
 import Header from "components/Headers/Header.js";
 import { Link, useParams } from 'react-router-dom';
 
-const BoardDetail = () => {
+const QuizBoardDetail = () => {
   const params = window.location.pathname;
   const id = params.substring(params.lastIndexOf('/') + 1);
 
-  const [board, setBoard] = useState([]);
+  const [quizBoard, setQuizBoard] = useState([]);
   useEffect(() => {
     axios({
-      url: 'http://localhost:8080/board/table/detail',
+      url: 'http://localhost:8080/board/table/quizDetail',
       method: 'get',
       params: { id: id }
     }).then((res) => {
       console.log("res DATA 확인");
       console.log(res.data);
-      setBoard(res.data);
+      setQuizBoard(res.data);
     });
   }, []);
   
@@ -62,7 +62,7 @@ const BoardDetail = () => {
                 <tbody>
                   <tr>
                     <div class="container">
-                      <h2 class="my-3 border-bottom pb-2">{board.title}<h5>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                      <h2 class="my-3 border-bottom pb-2">{quizBoard.title}<h5>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
                         &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
                         &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
                         &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
@@ -75,11 +75,11 @@ const BoardDetail = () => {
                         &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
                         &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
                         &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-                        &nbsp; 작성자:{board.userId}</h5></h2>
+                        &nbsp; 작성자:{quizBoard.userId}</h5></h2>
 
 
                       <h4><br />
-                        {board.content}
+                        {quizBoard.content}
                         <br />
                         <br />
 
@@ -116,13 +116,13 @@ const BoardDetail = () => {
 
 
                   axios({
-                    url: 'http://localhost:8080/board/answer',
+                    url: 'http://localhost:8080/board/quizAnswer',
                     method: 'post',
-                    params: { board_id: id },
+                    params: { quizBoard_id: id },
                     data: formData,
                   }).then((res) => {
                     console.log(res.data);
-                    window.location = `/admin/tableDetail/${id}`;
+                    window.location = `/admin/quizDetail/${id}`;
                   });
 
                 }
@@ -151,7 +151,8 @@ const BoardDetail = () => {
 
                  
                   <button type="button" class="btn btn-primary" onClick={()=>{
-                    window.location= `/admin/tableUpdate/${board.id}`}}>수정 </button>
+                    window.location= `/admin/QuizUpdate/${quizBoard.id}`}}  >수정 </button>
+        
                    
                   <button type="button" class="btn btn-primary" >삭제</button> 
                   
@@ -195,9 +196,9 @@ const Answer = ({id}) => {
 
   useEffect(() => {
     axios({
-      url: 'http://localhost:8080/board/answer',
+      url: 'http://localhost:8080/board/quizAnswer',
       method: 'get',
-      params: { board_id: id }
+      params: { quizBoard_id: id }
     }).then((res) => {
       console.log(res.data);
       setList(res.data);
@@ -240,5 +241,5 @@ location = `/board/delete/${num}`;
 });
 </script> */}
 
-export default BoardDetail;
+export default QuizBoardDetail;
 

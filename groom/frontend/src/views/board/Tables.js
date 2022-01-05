@@ -62,8 +62,8 @@ const Tables = (props) => {
                     <th scope="col">순서</th>
                     <th scope="col">제목</th>
                     <th scope="col">작성자</th>
+                    <th scope="col">작성일</th>
                     <th scope="col">조회</th>
-                    <th scope="col">좋아요</th>
                     <th scope="col" />
 
 
@@ -168,6 +168,5 @@ const Tables = (props) => {
     </>
   );
 };
-
 
 export default Tables;

@@ -14,14 +14,14 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Board {
+public class QuizBoard {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String title;
 	private String content;
 	private String userId;
-	
+
 	// @Temporal(TemporalType.TIMESTAMP)
 	// Date nowDate;
 	

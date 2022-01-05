@@ -9,8 +9,12 @@ import Register from "views/examples/Register.js";
 import TableWrite from "views/write/TableWrite.js";
 
 import BoardDetail from "views/board/BoardDetail";
+import QuizBoardDetail from "views/board/QuizBoardDetail";
 
 import Profile from "views/examples/Profile.js";
+import TableUpdate from "views/board/TableUpdate";
+import QuizTableWrite from "views/write/QuizTableWrite";
+import QuizUpdate from "views/board/QuizUpdate";
 
 var routes = [
   {
@@ -63,7 +67,7 @@ var routes = [
   },
 
   {
-    path: "/Quiz",
+    path: "/quizTable",
     name: "코드 정보",
     icon: "ni ni-ruler-pencil text-blue",
     component: Quiz,
@@ -96,6 +100,11 @@ var routes = [
     layout: "/admin",
   },
   {
+    path: "/quizDetail",
+    component: QuizBoardDetail,
+    layout: "/admin",
+  },
+  {
     path: "/user-profile",
     component: Profile,
     layout: "/admin",
@@ -110,6 +119,21 @@ var routes = [
   {
     path: "/tableWrite",
     component: TableWrite,
+    layout: "/admin",
+  },
+  {
+    path: "/quizTableWrite",
+    component: QuizTableWrite,
+    layout: "/admin",
+  },
+  {
+    path: "/tableUpdate",
+    component: TableUpdate,
+    layout: "/admin",
+  },
+  {
+    path: "/quizUpdate",
+    component: QuizUpdate,
     layout: "/admin",
   },
 

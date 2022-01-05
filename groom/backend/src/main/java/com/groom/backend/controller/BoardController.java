@@ -8,10 +8,14 @@ import javax.servlet.http.HttpSession;
 import com.groom.backend.model.Answer;
 // import com.groom.backend.model.Answer;
 import com.groom.backend.model.Board;
+import com.groom.backend.model.QuizAnswer;
+import com.groom.backend.model.QuizBoard;
 import com.groom.backend.model.User;
 import com.groom.backend.repository.AnswerRepository;
 // import com.groom.backend.repository.AnswerRepository;
 import com.groom.backend.repository.BoardRepository;
+import com.groom.backend.repository.QuizAnswerRepository;
+import com.groom.backend.repository.QuizBoardRepository;
 
 import org.aspectj.weaver.patterns.TypePatternQuestions.Question;
 import org.hibernate.annotations.Tables;
@@ -37,6 +41,10 @@ public class BoardController {
     BoardRepository boardRepository;
     @Autowired
     AnswerRepository answerRepository;
+    @Autowired
+    QuizBoardRepository quizBoardRepository;
+    @Autowired
+    QuizAnswerRepository quizAnswerRepository;
 
     @Autowired
     HttpSession session;
@@ -57,6 +65,22 @@ public class BoardController {
         boardRepository.save(board);
 
         return board;
+    }
+    @GetMapping("/quizTableWrite")
+    public String quizTableWrite() {
+        return "quizTableWrite";
+    }
+
+    @PostMapping("/quizTableWrite")
+    @ResponseBody
+    public QuizBoard quizTableWrite(@ModelAttribute QuizBoard quiz_board) {
+        User user = (User) session.getAttribute("user_info");
+        // String userId = user.getName();
+        String userId = "익명";
+        quiz_board.setUserId(userId);
+        quizBoardRepository.save(quiz_board);
+
+        return quiz_board;
     }
 
     @GetMapping("/answer")
@@ -81,6 +105,28 @@ public class BoardController {
 
         return answer;
     }
+    @GetMapping("/quizAnswer")
+    @ResponseBody
+    public List<QuizAnswer> quizAnswerList(@ModelAttribute QuizAnswer quizAnswer, Long quizBoard_id) {
+        QuizBoard quizBoard = quizBoardRepository.findById(quizBoard_id).get();
+        Sort sort = Sort.by(Order.desc("id"));
+        List<QuizAnswer> list = quizAnswerRepository.findByQuizBoard( quizBoard , sort);
+        return list;
+    }
+
+    @PostMapping("/quizAnswer")
+    @ResponseBody
+    public QuizAnswer quizAnswer(@ModelAttribute QuizAnswer quizAnswer, Long quizBoard_id) {
+        // User user = (User) session.getAttribute("user_info");
+        // // String userId = user.getName();
+        QuizBoard quziBoard = quizBoardRepository.findById(quizBoard_id).get();
+        String content = quizAnswer.getContent();
+        quizAnswer.setContent(content);
+        quizAnswer.setQuizBoard(quziBoard);
+        quizAnswerRepository.save(quizAnswer);
+
+        return quizAnswer;
+    }
 
     // //list
 
@@ -92,6 +138,14 @@ public class BoardController {
         return list;
 
     }
+    @GetMapping("/quizTables")
+    @ResponseBody
+    public List<QuizBoard> quizBoardList() {
+        Sort sort = Sort.by(Order.desc("id"));
+        List<QuizBoard> list = quizBoardRepository.findAll(sort);
+        return list;
+
+    }
 
     @GetMapping("/table/detail")
     @ResponseBody
@@ -100,21 +154,22 @@ public class BoardController {
 
         return opt.get();
     }
+    @GetMapping("/table/quizDetail")
+    @ResponseBody
+    public QuizBoard quizBoardDetail(Model model, Long id) {
+        Optional<QuizBoard> opt = quizBoardRepository.findById(id);
+
+        return opt.get();
+    }
 
     //수정 
-    @GetMapping("/table/update")
-    @ResponseBody
-	public String boardUpdate(Model model, @PathVariable("id") long id) {
-		Optional<Board> data = boardRepository.findById(id);
-		Board board = data.get();
-		model.addAttribute("board", board);
-		return "table/update";
-	}
 
-    @PostMapping("/table/update")
+
+    @PostMapping("/table/update/{id}")
     @ResponseBody
     public Board tableUpdate(
             @ModelAttribute Board board, @PathVariable("id") long id) {
+        System.out.println(board);
         User user = (User) session.getAttribute("user_info");
         // String userId = user.getEmail();
         String userId = "익명";
@@ -126,13 +181,30 @@ public class BoardController {
         return board;
     }
 
+    @PostMapping("/quizUpdate/{id}")
+    @ResponseBody
+    public QuizBoard quizUpdate(
+            @ModelAttribute QuizBoard quizBoard, @PathVariable("id") long id) {
+       
+        User user = (User) session.getAttribute("user_info");
+        // String userId = user.getEmail();
+        String userId = "익명";
+        // String content = board.getContent();
+        quizBoard.setUserId(userId);
+        quizBoard.setId(id);
+        // board.setContent(content);
+        quizBoardRepository.save(quizBoard);
+        return quizBoard;
+    }
+
 
     //삭제
 
-    // @GetMapping("/table/delete/{id}")
-    // public String tableDelete(@PathVariable("id") long id) {
-    //     boardRepository.deleteById(id);
-    //     return ;
-    // }
+    @GetMapping("/table/delete")
+    @ResponseBody
+    public String tableDelete(@PathVariable("id") long id) {
+        boardRepository.deleteById(id);
+        return "table/delete";
+    }
 
 }

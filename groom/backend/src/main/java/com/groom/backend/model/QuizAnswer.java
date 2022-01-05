@@ -7,24 +7,26 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import lombok.Data;
 
-@Entity
 @Data
-public class Board {
+@Entity
+public class QuizAnswer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
-	private String title;
-	private String content;
-	private String userId;
+	Long id;
 	
-	// @Temporal(TemporalType.TIMESTAMP)
-	// Date nowDate;
+	String content;
+	// Date createDate;
+    // public void setUser(User user) {
+    // }
+    // public void setBoard(Board board) {
+    // }
 	
-	// @ManyToOne
-	// User user;
+	@ManyToOne
+	User user;
+	
+	@ManyToOne
+	QuizBoard quizBoard;
 }

@@ -26,20 +26,20 @@ import { Link } from 'react-router-dom';
 import BoardDetail from './BoardDetail';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
-const TableUpdate = ({board_id}) => {
+const QuizUpdate = ({board_id}) => {
   const params = window.location.pathname;
   const id = params.substring(params.lastIndexOf('/') + 1);
   console.log("Update로 받아온 ID 값 :",id);
-  const [board, setBoard] = useState({});
+  const [quizBoard, setQuizBoard] = useState({});
   useEffect(() => {
     axios({
-      url: 'http://localhost:8080/board/table/detail',
+      url: 'http://localhost:8080/board/table/quizDetail',
       method: 'get',
       params: {  id: id}
     }).then((res) => {
       console.log("Table update의 데이터:");
       console.log(res.data);
-      setBoard(res.data);
+      setQuizBoard(res.data);
     });
   }, []);
 
@@ -83,13 +83,13 @@ const TableUpdate = ({board_id}) => {
                           
               
                           axios({
-                            url: `http://localhost:8080/board/table/update/${id}`,
+                            url: `http://localhost:8080/board/quizUpdate/${id}`,
                             method: 'post',
                             data: formData,
                           }).then((res) => {
                             console.log(res.data);
                           
-                           window.location = '/admin/tables/' ;
+                           window.location = '/quizTable/' ;
                             // window.location = `/admin/tableDetail/${board_id}`;
                           });
               
@@ -100,14 +100,14 @@ const TableUpdate = ({board_id}) => {
                           <label for="title">제목</label>
                           <input type="text" class="form-control" name="title" id="title" value={board.title} 
                           onChange={(e)=>{
-                            setBoard({title:e.target.value});
+                            setQuizBoard({title:e.target.value});
                           }}></input>
                         </div>
                         <div class="form-group">
                           <label for="content">내용</label>
                           <textarea class="form-control" name="content" id="content" rows="10" value={board.content}
                           onChange={(e)=>{
-                            setBoard({content:e.target.value});
+                            setQuizBoard({content:e.target.value});
                             
                           }}></textarea>
                         </div>
@@ -151,4 +151,4 @@ const TableUpdate = ({board_id}) => {
 };
 
 
-export default TableUpdate;
+export default QuizUpdate;
