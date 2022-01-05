@@ -1,12 +1,14 @@
 /*eslint-disable*/
 import Index from "views/Index.js";
-import CloudNews from "views/examples/CloudNews.js";
-import Quiz from "views/examples/Quiz.js";
+import CloudNews from "views/board/CloudNews.js";
+import Quiz from "views/board/Quiz.js";
 import Login from "views/examples/Login.js";
-import Tables from "views/examples/Tables.js";
-import Notice from "views/examples/Notice.js";
+import Tables from "views/board/Tables.js";
+import Notice from "views/board/Notice.js";
 import Register from "views/examples/Register.js";
-
+import TableWrite from "views/write/TableWrite.js";
+import BoardDetail from "views/board/BoardDetail";
+import Profile from "views/examples/Profile.js";
 var routes = [
   {
     path: "/index",
@@ -22,18 +24,27 @@ var routes = [
     component: Notice,
     layout: "/admin",
   },
-  
+
   {
     path: "/tables",
-    name: "게시판",
+    name: "익명게시판",
+    icon: "ni ni-bullet-list-67 text-blue",
+    component: Tables,
+    layout: "/admin",
+  },
+  {
+    path: "/tables",
+    name: "자유게시판",
     icon: "ni ni-bullet-list-67 text-blue",
     component: Tables,
     layout: "/admin",
   },
 
+
+
   {
     path: "/cloudNews",
-    name: "클라우드 뉴스",
+    name: "최신 기술 뉴스",
     icon: "ni ni-cloud-upload-96 text-blue",
     component: CloudNews,
     layout: "/admin",
@@ -45,34 +56,42 @@ var routes = [
     component: Quiz,
     layout: "/admin",
   },
- 
+
+
+
 
 
 
   // ========================================  Logout ========================================
   <br />, <br />, <br />, <br />, <br />, <br />,
   <br />, <br />, <br />, <br />, <br />, <br />,
-  <br />, <br />, <br />, <br />, <br />,
-  
+
+
   {
     path: "/login",
-    name: "Logout",
-    icon: "ni ni-user-run text-pink",
     component: Login,
     layout: "/auth",
   },
-
-
-
-
-
-
-
-
+  {
+    path: "/tableDetail",
+    component: BoardDetail,
+    layout: "/admin",
+  },
+  {
+    path: "/user-profile",
+    component: Profile,
+    layout: "/admin",
+  },
   {
     path: "/register",
     component: Register,
     layout: "/auth",
   },
+  {
+    path: "/tableWrite",
+    component: TableWrite,
+    layout: "/admin",
+  },
+
 ];
 export default routes;
