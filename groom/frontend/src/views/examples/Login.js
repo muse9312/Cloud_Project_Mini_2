@@ -66,13 +66,13 @@ const Login = () => {
     }).then(function (res) {
       console.log(res.data);
       if (res.data.code === 200) {
-        
+        sessionStorage.setItem('name', res.data.name);
         alert('로그인 성공');
 
         window.location = '/admin/index';
 
       } else {
-        
+
         alert('이메일과 비밀번호를 확인해주세요');
       }
     })

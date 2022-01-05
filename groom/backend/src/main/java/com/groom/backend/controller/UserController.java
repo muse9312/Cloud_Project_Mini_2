@@ -94,6 +94,7 @@ public class UserController {
                 user.getPwd());
         Map<String, Object> map = new HashMap<>();
         if (dbUser != null) {
+            map.put("name", dbUser.getName());
             map.put("code", 200);
             map.put("message", "success");
         } else {
