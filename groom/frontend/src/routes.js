@@ -39,13 +39,8 @@ var routes = [
     component: Tables,
     layout: "/admin",
   },
-  {
-    path: "/tables",
-    name: "질문게시판",
-    icon: "ni ni-bullet-list-67 text-blue",
-    component: BoardDetail,
-    layout: "/admin",
-  },
+  
+ 
 
   {
     path: "/cloudNews",
@@ -79,7 +74,11 @@ var routes = [
   },
 
 
-
+  {
+    path: "/tableDetail",
+    component: BoardDetail,
+    layout: "/admin",
+  },
 
 
 

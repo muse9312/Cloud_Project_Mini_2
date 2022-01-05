@@ -5,8 +5,12 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
+import com.groom.backend.model.Answer;
+// import com.groom.backend.model.Answer;
 import com.groom.backend.model.Board;
 import com.groom.backend.model.User;
+import com.groom.backend.repository.AnswerRepository;
+// import com.groom.backend.repository.AnswerRepository;
 import com.groom.backend.repository.BoardRepository;
 
 import org.aspectj.weaver.patterns.TypePatternQuestions.Question;
@@ -21,6 +25,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @CrossOrigin
@@ -29,6 +34,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class BoardController {
     @Autowired
     BoardRepository boardRepository;
+    @Autowired
+    AnswerRepository answerRepository;
 
     @Autowired
     HttpSession session;
@@ -44,12 +51,36 @@ public class BoardController {
     @ResponseBody
     public Board boardWrite(@ModelAttribute Board board) {
         User user = (User) session.getAttribute("user_info");
-        // String userId = user.getEmail();
+        // String userId = user.getName();
         String userId = "익명";
         board.setUserId(userId);
         boardRepository.save(board);
 
         return board;
+    }
+	
+    @GetMapping("/answer")
+        @ResponseBody
+        public List<Answer> answerList(@ModelAttribute Answer answer, Long board_id){
+          Board board = boardRepository.findById(board_id).get();
+            Sort sort = Sort.by(Order.desc("id"));
+            List<Answer> list = answerRepository.findByBoard(board, sort);
+            return list;
+    }
+
+    @PostMapping("/answer")
+    @ResponseBody
+    public Answer answer(@ModelAttribute Answer answer, Long board_id) {
+        // User user = (User) session.getAttribute("user_info");
+        // // String userId = user.getName();
+        Board board = boardRepository.findById(board_id).get();
+        String content = answer.getContent();
+        answer.setContent(content);
+        answer.setBoard(board);
+        answerRepository.save(answer);
+
+
+        return answer;
     }
 
 
@@ -63,15 +94,60 @@ public class BoardController {
 		Sort sort = Sort.by(Order.desc("id"));
 		List<Board> list = boardRepository.findAll(sort);
 		return list;
+
 	}
     @GetMapping("/table/detail")
-	public String boardDetail(Model model, Long id) {
+    @ResponseBody
+	public Board boardDetail(Model model, Long id) {
 		Optional<Board> opt = boardRepository.findById(id);
-		if(opt.isPresent()) {
-			model.addAttribute("question", opt.get());
-			
-		}
-		return "table_detail";
+		
+		return opt.get();
 	}
 
+    // @GetMapping("/board/{id}")
+	// public String boardView(Model model, @PathVariable("id") long id) {
+	// 	Optional<Board> data = boardRepository.findById(id);
+	// 	Board board = data.get();
+	// 	model.addAttribute("board", board);
+	// 	return ;
+	// }
+    // @GetMapping("/posts/read/{id}") 
+    // public String read(@PathVariable Long id, Model model) 
+    // { PostsResponseDto dto = postsService.findById(id); postsService.updateView(id); // views ++ model.addAttribute("posts", dto); return "posts-read"; }
+
+
+    //수정 삭제
+    
+	// @GetMapping("/board/delete/{id}")
+	// public String boardDelete(@PathVariable("id") long id) {
+	// 	boardRepository.deleteById(id);
+	// 	return "redirect:/board/list";
+	// }
+
+	// @GetMapping("/board/update/{id}")
+	// public String boardUpdate(Model model, @PathVariable("id") long id) {
+	// 	Optional<Board> data = boardRepository.findById(id);
+	// 	Board board = data.get();
+	// 	model.addAttribute("board", board);
+	// 	return "board/update";
+	// }
+		
+	// @PostMapping("/board/update/{id}")
+	// public String boardUpdate(
+	// 		@ModelAttribute Board board, @PathVariable("id") long id) {
+	// 	User user = (User) session.getAttribute("user_info");
+	// 	String userId = user.getEmail();
+	// 	board.setUserId(userId);
+	// 	board.setId(id);
+	// 	boardRepository.save(board);
+	// 	return "redirect:/board/" + id;
+	// }
+
+	// @GetMapping("/board/{id}")
+	// public String boardView(Model model, @PathVariable("id") long id) {
+	// 	Optional<Board> data = boardRepository.findById(id);
+	// 	Board board = data.get();
+	// 	model.addAttribute("board", board);
+	// 	return "board/view";
+   
 }

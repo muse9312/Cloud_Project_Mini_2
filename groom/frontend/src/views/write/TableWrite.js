@@ -26,9 +26,6 @@ import { Link } from 'react-router-dom';
 
 const TableWrite = () => {
 
-
-
-
   return (
 
     <>
@@ -93,7 +90,7 @@ const TableWrite = () => {
                         </div>
                         
                         
-                          <button type="submit" class="btn btn-primary">저장하기</button>
+                          <button type="submit" class="btn btn-primary">등록</button>
                        
                       </form>
                       
