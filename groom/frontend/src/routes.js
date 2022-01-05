@@ -24,7 +24,7 @@ var routes = [
     component: Notice,
     layout: "/admin",
   },
-  
+
   {
     path: "/tables",
     name: "익명게시판",
@@ -39,12 +39,12 @@ var routes = [
     component: Tables,
     layout: "/admin",
   },
-  
- 
+
+
 
   {
     path: "/cloudNews",
-    name: "클라우드 뉴스",
+    name: "최신 기술 뉴스",
     icon: "ni ni-cloud-upload-96 text-blue",
     component: CloudNews,
     layout: "/admin",
@@ -56,15 +56,15 @@ var routes = [
     component: Quiz,
     layout: "/admin",
   },
- 
+
 
 
 
   // ========================================  Logout ========================================
   <br />, <br />, <br />, <br />, <br />, <br />,
   <br />, <br />, <br />, <br />, <br />, <br />,
-  <br />, <br />, <br />, <br />, <br />,
-  
+  <br />, <br />, <br />,
+
   {
     path: "/login",
     name: "Logout",
@@ -93,6 +93,6 @@ var routes = [
     component: TableWrite,
     layout: "/admin",
   },
-  
+
 ];
 export default routes;
