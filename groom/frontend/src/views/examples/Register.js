@@ -15,6 +15,9 @@ import {
   Col,
 } from "reactstrap";
 
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
+
 const Register = () => {
 
   function BackLogin(e) {
@@ -48,8 +51,11 @@ const Register = () => {
       .then(function (res) {
         console.log(res.data);
         if (res.data.code === 200) {
-          alert('회원가입 성공');
-
+          <Stack sx={{ width: '100%' }} spacing={2}>
+            <Alert severity="success">
+              <AlertTitle>Success</AlertTitle><strong>회원가입 성공!!</strong>
+            </Alert>
+          </Stack>
 
 
         }

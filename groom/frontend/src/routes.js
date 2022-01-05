@@ -8,7 +8,7 @@ import Notice from "views/board/Notice.js";
 import Register from "views/examples/Register.js";
 import TableWrite from "views/write/TableWrite.js";
 import BoardDetail from "views/board/BoardDetail";
-
+import Profile from "views/examples/Profile.js";
 var routes = [
   {
     path: "/index",
@@ -60,29 +60,28 @@ var routes = [
 
 
 
+
+
   // ========================================  Logout ========================================
   <br />, <br />, <br />, <br />, <br />, <br />,
   <br />, <br />, <br />, <br />, <br />, <br />,
-  <br />, <br />, <br />,
+
 
   {
     path: "/login",
-    name: "Logout",
-    icon: "ni ni-user-run text-pink",
     component: Login,
     layout: "/auth",
   },
-
-
   {
     path: "/tableDetail",
     component: BoardDetail,
     layout: "/admin",
   },
-
-
-
-
+  {
+    path: "/user-profile",
+    component: Profile,
+    layout: "/admin",
+  },
   {
     path: "/register",
     component: Register,
