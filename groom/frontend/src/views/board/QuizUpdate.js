@@ -26,20 +26,20 @@ import { Link } from 'react-router-dom';
 import BoardDetail from './BoardDetail';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
-const TableUpdate = ({board_id}) => {
+const QuizUpdate = ({board_id}) => {
   const params = window.location.pathname;
   const id = params.substring(params.lastIndexOf('/') + 1);
   console.log("Update로 받아온 ID 값 :",id);
-  const [board, setBoard] = useState({});
+  const [quizBoard, setQuizBoard] = useState({});
   useEffect(() => {
     axios({
-      url: 'http://localhost:8080/board/table/detail',
+      url: 'http://localhost:8080/board/table/quizDetail',
       method: 'get',
       params: {  id: id}
     }).then((res) => {
       console.log("Table update의 데이터:");
       console.log(res.data);
-      setBoard(res.data);
+      setQuizBoard(res.data);
     });
   }, []);
 
@@ -55,7 +55,7 @@ const TableUpdate = ({board_id}) => {
           <div className="col">
             <Card className="shadow">
               <CardHeader className="border-0">
-                <h3 className="mb-0">익명게시판</h3>
+                <h3 className="mb-0">코드정보</h3>
               </CardHeader>
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
@@ -74,22 +74,24 @@ const TableUpdate = ({board_id}) => {
                           const formData = new FormData();
                           const title = e.target['0'].value;
                           const content = e.target['1'].value;
-                          const userId = e.target['2'].value;
+                          const userId = e.target['3'].value;
+                          const content2 = e.target['2'].value;
                           // const nowDate = e.target['3'].value;
                           formData.append("title", title);
                           formData.append("content", content);
                           formData.append("userId", userId);
+                          formData.append("content2", content2);
                           // formData.append("nowDate", nowDate);
                           
               
                           axios({
-                            url: `http://localhost:8080/board/table/update/${id}`,
+                            url: `http://localhost:8080/board/quizUpdate/${id}`,
                             method: 'post',
                             data: formData,
                           }).then((res) => {
                             console.log(res.data);
                           
-                           window.location = '/admin/tables/' ;
+                           window.location = '/admin/quizTable/' ;
                             // window.location = `/admin/tableDetail/${board_id}`;
                           });
               
@@ -98,22 +100,25 @@ const TableUpdate = ({board_id}) => {
                         }>
                         <div class="form-group">
                           <label for="title">제목</label>
-                          <input type="text" class="form-control" name="title" id="title" value={board.title} 
+                          <input type="text" class="form-control" name="title" id="title" value={quizBoard.title} 
                           onChange={(e)=>{
-                            setBoard({title:e.target.value});
+                            setQuizBoard({title:e.target.value});
                           }}></input>
                         </div>
                         <div class="form-group">
                           <label for="content">내용</label>
-                          <textarea class="form-control" name="content" id="content" rows="10" value={board.content}
+                          <textarea class="form-control" name="content" id="content" rows="10" value={quizBoard.content}
                           onChange={(e)=>{
-                            setBoard({content:e.target.value});
+                            setQuizBoard({content:e.target.value});
                             
                           }}></textarea>
                         </div>
                         <div class="form-group">
                           <label for="content">첨부파일</label>
                           <input type="file" name="image"></input>
+                        </div>
+                        <div class="form-group">
+                          <input label  name="content2" id="content2" value={sessionStorage.getItem('name')}></input>
                         </div>
                         
                           <button type="submit" class="btn btn-primary">수정완료</button>
@@ -151,4 +156,4 @@ const TableUpdate = ({board_id}) => {
 };
 
 
-export default TableUpdate;
+export default QuizUpdate;

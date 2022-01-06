@@ -1,6 +1,5 @@
 package com.groom.backend.model;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -15,23 +14,17 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Board {
+public class FreeBoard {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String title;
 	private String content;
 	private String userId;
-
-	private long viewCnt;
+	private String content2;
 
 	// @Temporal(TemporalType.TIMESTAMP)
 	// Date nowDate;
-
-	
-	private Date creDate;
-	
-
 	
 	// @ManyToOne
 	// User user;

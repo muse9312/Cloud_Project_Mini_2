@@ -11,18 +11,10 @@ import TableWrite from "views/write/TableWrite.js";
 import BoardDetail from "views/board/BoardDetail";
 import QuizBoardDetail from "views/board/QuizBoardDetail";
 
-import Profile from "views/examples/Profile.js";
+import Profile from "views/examples/ManagerProfile";
 import TableUpdate from "views/board/TableUpdate";
 import QuizTableWrite from "views/write/QuizTableWrite";
 import QuizUpdate from "views/board/QuizUpdate";
-import NoticeTableWrite from "views/write/NoticeTableWrite";
-import NoticeBoardDetail from "./views/board/NoticeBoardDetail .js"
-import FreeTables from "views/board/FreeTables.js";
-import FreeBoardDetail from "views/board/FreeBoardDetail.js";
-import FreeTableWrite from "views/write/FreeTableWrite.js";
-import FreeUpdate from "views/board/FreeUpdate.js";
-
-
 
 var routes = [
   {
@@ -30,15 +22,15 @@ var routes = [
     name: "뭉게구름",
     icon: "ni ni-tv-2 text-primary",
     component: Index,
-    layout: "/admin",
+    layout: "/Manager",
   },
 
   {
-    path: "/noticeTable",
+    path: "/notice",
     name: "공지사항",
     icon: "ni ni-bulb-61 text-blue",
     component: Notice,
-    layout: "/admin",
+    layout: "/Manager",
   },
 
   {
@@ -46,14 +38,14 @@ var routes = [
     name: "익명게시판",
     icon: "ni ni-bullet-list-67 text-blue",
     component: Tables,
-    layout: "/admin",
+    layout: "/Manager",
   },
   {
-    path: "/freeTables",
+    path: "/tables",
     name: "자유게시판",
     icon: "ni ni-bullet-list-67 text-blue",
-    component: FreeTables,
-    layout: "/admin",
+    component: Tables,
+    layout: "/Manager",
   },
 
 
@@ -71,7 +63,7 @@ var routes = [
     name: "최신 기술 뉴스",
     icon: "ni ni-cloud-upload-96 text-blue",
     component: CloudNews,
-    layout: "/admin",
+    layout: "/Manager",
   },
 
   {
@@ -79,7 +71,7 @@ var routes = [
     name: "코드 정보",
     icon: "ni ni-ruler-pencil text-blue",
     component: Quiz,
-    layout: "/admin",
+    layout: "/Manager",
   },
 
 
@@ -105,32 +97,17 @@ var routes = [
   {
     path: "/tableDetail",
     component: BoardDetail,
-    layout: "/admin",
+    layout: "/Manager",
   },
   {
     path: "/quizDetail",
     component: QuizBoardDetail,
-    layout: "/admin",
+    layout: "/Manager",
   },
-  {
-    path: "/noticeDetail",
-    component: NoticeBoardDetail,
-    layout: "/admin",
-  },
-  {
-    path: "/freeDetail",
-    component: FreeBoardDetail,
-    layout: "/admin",
-  },
-  // {
-  //   path: "/noticeDetail",
-  //   component: NoticeBoardDetail,
-  //   layout: "/admin",
-  // },
   {
     path: "/user-profile",
     component: Profile,
-    layout: "/admin",
+    layout: "/Manager",
   },
 
   {
@@ -142,37 +119,22 @@ var routes = [
   {
     path: "/tableWrite",
     component: TableWrite,
-    layout: "/admin",
+    layout: "/Manager",
   },
   {
     path: "/quizTableWrite",
     component: QuizTableWrite,
-    layout: "/admin",
-  },
-  {
-    path: "/noticeTableWrite",
-    component: NoticeTableWrite,
-    layout: "/admin",
-  },
-  {
-    path: "/freeTableWrite",
-    component: FreeTableWrite,
-    layout: "/admin",
+    layout: "/Manager",
   },
   {
     path: "/tableUpdate",
     component: TableUpdate,
-    layout: "/admin",
+    layout: "/Manager",
   },
   {
     path: "/quizUpdate",
     component: QuizUpdate,
-    layout: "/admin",
-  },
-  {
-    path: "/freeUpdate",
-    component: FreeUpdate,
-    layout: "/admin",
+    layout: "/Manager",
   },
 
 ];

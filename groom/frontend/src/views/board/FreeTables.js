@@ -27,13 +27,13 @@ import Dropdown from "./Dropdown";
 
 
 // const Tables = () => {
-const Notice = (props) => {
+const FreeTables = (props) => {
 
   const [list, setList] = useState([]);
 
   useEffect(() => {
     axios({
-      url: 'http://localhost:8080/board/noticeTables',
+      url: 'http://localhost:8080/board/freeTables',
       method: 'get'
     }).then((res) => {
       console.log(res.data);
@@ -53,7 +53,7 @@ const Notice = (props) => {
           <div className="col">
             <Card className="shadow">
               <CardHeader className="border-0">
-                <h3 className="mb-0">공지사항</h3>
+                <h3 className="mb-0">자유게시판</h3>
               </CardHeader>
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
@@ -78,13 +78,13 @@ const Notice = (props) => {
                       <tr>
                         <td>{v.id}</td>
                         <td>
-                           <a href={`/admin/noticeDetail/${v.id}`}> 
+                          <a href={`/admin/freeDetail/${v.id}`}>
                             {v.title}
 
-                           </a> 
+                          </a>
                         </td>
                         {/* <td>{v.userId}</td> */}
-                        <td>{"관리자"}</td>
+                        <td>{v.userId}</td>
                         {/* <td>{v.nowDate}</td>  */}
                       </tr>
                     );
@@ -105,7 +105,7 @@ const Notice = (props) => {
                     listClassName="justify-content-end mb-0"
                   >
                     <>
-                      <Link to="/admin/noticeTableWrite">
+                      <Link to="/admin/freeTableWrite">
                         <button type="button" class="btn btn-primary btn-block" id="write-btn">글쓰기</button>
                       </Link>
                     </>
@@ -170,4 +170,4 @@ const Notice = (props) => {
   );
 };
 
-export default Notice;
+export default FreeTables;

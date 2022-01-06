@@ -12,13 +12,13 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Answer {
+public class QuizAnswer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
 	
 	String content;
-
+	String content2;
 	// Date createDate;
     // public void setUser(User user) {
     // }
@@ -29,5 +29,5 @@ public class Answer {
 	User user;
 	
 	@ManyToOne
-	Board board;
+	QuizBoard quizBoard;
 }
