@@ -116,21 +116,21 @@ const Index = (props) => {
   }
 
 
-//뉴스api
-  const newsApi = async () => {
-    try {
+  //뉴스api
+  // const newsApi = async () => {
+  //   try {
 
 
-      const news = await axios.get(
-        `https://newsapi.org/v2/top-headlines?country=us&apiKey=1269ddcc25814aec9cb99df554126760&category=technology&pageSize=1`
-      );
-      // console.log(news);
-      setNewsMainArray(news.data.articles);
-      setNewsMainResults(news.data.totalResults);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  //     const news = await axios.get(
+  //       `https://newsapi.org/v2/top-headlines?country=us&apiKey=1269ddcc25814aec9cb99df554126760&category=technology&pageSize=1`
+  //     );
+  //     // console.log(news);
+  //     setNewsMainArray(news.data.articles);
+  //     setNewsMainResults(news.data.totalResults);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   useEffect(() => {
     newsApi();
@@ -202,9 +202,9 @@ const Index = (props) => {
 
               <CardBody>
 
-                 {/* <script src="https://www.youtube.com/iframe_api" >
+                {/* <script src="https://www.youtube.com/iframe_api" >
               </script>  */}
- 
+
                 <div className="youtube">
                   <Table className="align-items-center table-flush" responsive>
                     {/* <div id="player"></div> */}
