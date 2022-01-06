@@ -5,17 +5,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 
-
-
-
-// node.js library that concatenates classes (strings)
-import classnames from "classnames";
-// javascipt plugin for creating charts
-import Chart from "chart.js";
-// react plugin used to create charts
-import { Line, Bar } from "react-chartjs-2";
-
-
 // reactstrap components
 import {
   Button,
@@ -32,20 +21,8 @@ import {
   Col,
 } from "reactstrap";
 
-// core components
-import {
-  chartOptions,
-  parseOptions,
-  chartExample1,
-  chartExample2,
-} from "variables/charts.js";
 
 import Header from "components/Headers/Header.js";
-
-import { LanguageVariant } from "typescript";
-
-import { BrowserRouter, Route } from 'react-router-dom';
-
 import NewsMainContent from "./board/News/NewsMain/NewsMainContent.js"
 
 
@@ -56,16 +33,10 @@ const Index = (props) => {
 
 
   const [activeNav, setActiveNav] = useState(1);
-  const [chartExample1Data, setChartExample1Data] = useState("data1");
-
-  if (window.Chart) {
-    parseOptions(Chart, chartOptions());
-  }
 
   const toggleNavs = (e, index) => {
     e.preventDefault();
     setActiveNav(index);
-    setChartExample1Data("data" + index);
   };
 
 
@@ -86,6 +57,66 @@ const Index = (props) => {
 
 
 
+  //youtube API
+  // const [info, setInfo] = useState([]);
+
+  // useEffect(() => {
+  //   const data = axios({
+  //     url: 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=코딩강의&maxResults=1&key=AIlzaSyDEwMcnsTvXKCnMg4R2LIK3gaXdhtoSGPw',
+  //     method: 'get'
+  //   });
+  //   data.then((result) => {
+  //     const videoInfo = [];
+  //     for (let item of result.data.items) {
+
+  //       const title = item.snippet.title;
+  //       const desc = item.snippet.description;
+  //       const url = item.snippet.thumbnails.default.url;
+  //       const videoId = item.id.videoId;
+  //       // console.log(title, desc, url, videoId);
+  //       videoInfo.push({ title: title, desc: desc, url: url, videoId: videoId, onPlayerReady: onp })
+  //     }
+  //     console.log(videoInfo);
+  //     setInfo(videoInfo);
+  //   });
+  // }, []);
+
+
+
+
+
+  //youtube 추천 강의
+  const [player, setPlayer] = useState([]);
+
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      height: '360',
+      width: '640',
+      videoId: 'M7lc1UVf-VE',
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange
+      }
+    });
+  }
+
+  function onPlayerReady(event) {
+    event.target.playVideo();
+  }
+
+  var done = false;
+  function onPlayerStateChange(event) {
+    if (event.data == YT.PlayerState.PLAYING && !done) {
+      setTimeout(stopVideo, 6000);
+      done = true;
+    }
+  }
+  function stopVideo() {
+    player.stopVideo();
+  }
+
+
+//뉴스api
   const newsApi = async () => {
     try {
 
@@ -161,22 +192,33 @@ const Index = (props) => {
               <CardHeader className="bg-transparent">
                 <Row className="align-items-center">
                   <div className="col">
-                    <h6 className="text-uppercase text-muted ls-1 mb-1">
+                    {/* <h6 className="text-uppercase text-muted ls-1 mb-1">
                       Performance
-                    </h6>
-                    <h2 className="mb-0">출석율?</h2>
+                    </h6> */}
+                    <h2 className="mb-0">추천 강의</h2>
                   </div>
                 </Row>
               </CardHeader>
 
               <CardBody>
-                {/* Chart */}
-                <div className="chart">
-                  <Bar
-                    data={chartExample2.data}
-                    options={chartExample2.options}
-                  />
+
+                 {/* <script src="https://www.youtube.com/iframe_api" >
+              </script>  */}
+ 
+                <div className="youtube">
+                  <Table className="align-items-center table-flush" responsive>
+                    {/* <div id="player"></div> */}
+
+                    <iframe id="player" type="text/html" width="320" height="360"
+                      src="http://www.youtube.com/embed/okHGRlgR8ps?enablejsapi=1&origin=http://example.com"
+                      frameborder="0"></iframe>
+
+                  </Table>
+
                 </div>
+
+
+
               </CardBody>
             </Card>
           </Col>

@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
+// import com.groom.backend.Service.BoardService;
 import com.groom.backend.model.Answer;
 // import com.groom.backend.model.Answer;
 import com.groom.backend.model.Board;
@@ -16,8 +17,10 @@ import com.groom.backend.repository.BoardRepository;
 import org.aspectj.weaver.patterns.TypePatternQuestions.Question;
 import org.hibernate.annotations.Tables;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -35,11 +38,26 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class BoardController {
     @Autowired
     BoardRepository boardRepository;
+
     @Autowired
     AnswerRepository answerRepository;
 
+    // @Autowired
+    // BoardService boardService;
+
     @Autowired
     HttpSession session;
+
+
+
+    // @GetMapping("/admin/index")
+    // public String index(Long id, Model model, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+
+    //     model.addAttribute("view", boardService.updateView(id));
+ 
+    //     return "/admin/index";
+    // }
+
 
     // write
     @GetMapping("/tableWrite")
@@ -97,7 +115,6 @@ public class BoardController {
     @ResponseBody
     public Board boardDetail(Model model, Long id) {
         Optional<Board> opt = boardRepository.findById(id);
-
         return opt.get();
     }
 

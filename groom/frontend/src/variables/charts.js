@@ -15,7 +15,9 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+const { default: axios } = require("axios");
 const Chart = require("chart.js");
+const { useState, useEffect } = require("react");
 //
 // Chart extension for making the bars rounded
 // Code from: https://codepen.io/jedtrow/full/ygRYgo
@@ -411,9 +413,12 @@ let chartExample2 = {
   },
 };
 
+
+
 module.exports = {
   chartOptions, // used inside src/views/Index.js
   parseOptions, // used inside src/views/Index.js
   chartExample1, // used inside src/views/Index.js
   chartExample2, // used inside src/views/Index.js
+
 };
