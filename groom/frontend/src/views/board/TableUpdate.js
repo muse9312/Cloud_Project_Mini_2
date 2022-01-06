@@ -55,7 +55,7 @@ const TableUpdate = ({board_id}) => {
           <div className="col">
             <Card className="shadow">
               <CardHeader className="border-0">
-                <h3 className="mb-0">게시판</h3>
+                <h3 className="mb-0">익명게시판</h3>
               </CardHeader>
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">

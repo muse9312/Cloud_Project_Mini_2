@@ -53,7 +53,7 @@ const Quiz = (props) => {
           <div className="col">
             <Card className="shadow">
               <CardHeader className="border-0">
-                <h3 className="mb-0">게시판</h3>
+                <h3 className="mb-0">코드정보</h3>
               </CardHeader>
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
@@ -83,6 +83,7 @@ const Quiz = (props) => {
 
                           </a>
                         </td>
+                        {/* <td>{v.userId}</td> */}
                         <td>{v.userId}</td>
                         {/* <td>{v.nowDate}</td>  */}
                       </tr>
@@ -110,7 +111,7 @@ const Quiz = (props) => {
                     </>
                     <PaginationItem className="disabled">
                       <PaginationLink
-                        href="#pablo"
+                        href="admin/tables"
                         onClick={(e) => e.preventDefault()}
                         tabIndex="-1"
                       >

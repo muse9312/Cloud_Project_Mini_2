@@ -24,20 +24,20 @@ import {
 import Header from "components/Headers/Header.js";
 import { Link, useParams } from 'react-router-dom';
 
-const BoardDetail = () => {
+const FreeBoardDetail = () => {
   const params = window.location.pathname;
   const id = params.substring(params.lastIndexOf('/') + 1);
 
-  const [board, setBoard] = useState([]);
+  const [freeBoard, setFreeBoard] = useState([]);
   useEffect(() => {
     axios({
-      url: 'http://localhost:8080/board/table/detail',
+      url: 'http://localhost:8080/board/table/freeDetail',
       method: 'get',
       params: { id: id }
     }).then((res) => {
       console.log("res DATA 확인");
       console.log(res.data);
-      setBoard(res.data);
+      setFreeBoard(res.data);
     });
   }, []);
   
@@ -53,7 +53,7 @@ const BoardDetail = () => {
           <div className="col">
             <Card className="shadow">
               <CardHeader className="border-0">
-                <h3 className="mb-0">익명게시판</h3>
+                <h3 className="mb-0">코드정보</h3>
               </CardHeader>
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
@@ -62,7 +62,7 @@ const BoardDetail = () => {
                 <tbody>
                   <tr>
                     <div class="container">
-                      <h2 class="my-3 border-bottom pb-2">{board.title}<h5>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                      <h2 class="my-3 border-bottom pb-2">{freeBoard.title}<h5>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
                         &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
                         &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
                         &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
@@ -75,11 +75,11 @@ const BoardDetail = () => {
                         &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
                         &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
                         &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-                        &nbsp; 작성자:{board.userId}</h5></h2>
+                        &nbsp; 작성자:{freeBoard.userId}</h5></h2>
 
 
                       <h4><br />
-                        {board.content}
+                        {freeBoard.content}
                         <br />
                         <br />
 
@@ -106,23 +106,25 @@ const BoardDetail = () => {
 
                   const formData = new FormData();
                   const content = e.target['0'].value;
+                  const content2 = e.target['1'].value;
                   // const content = e.target['1'].value;
                   // const userId = e.target['2'].value;
                   // const nowDate = e.target['3'].value;
                   // formData.append("title", title);
                   formData.append("content", content);
+                  formData.append("content2", content2);
                   // formData.append("userId", userId);
                   // formData.append("nowDate", nowDate);
 
 
                   axios({
-                    url: 'http://localhost:8080/board/answer',
+                    url: 'http://localhost:8080/board/freeAnswer',
                     method: 'post',
-                    params: { board_id: id },
+                    params: { freeBoard_id: id },
                     data: formData,
                   }).then((res) => {
                     console.log(res.data);
-                    window.location = `/admin/tableDetail/${id}`;
+                    window.location = `/admin/freeDetail/${id}`;
                   });
 
                 }
@@ -141,17 +143,19 @@ const BoardDetail = () => {
                     <label for="content">댓글</label>
                     <br />
                     <br />
-                    <Answer id={id} />
+                    <FreeAnswer id={id} />
                     <br />
                     <br />
                     <textarea class="form-control" name="content" id="content" rows="5" placeholder="댓글을 남겨보세요"></textarea>
+                    <input name="content2" id="content2" value={sessionStorage.getItem('name')}></input>
                   </div>
 
                   <button type="submit" class="btn btn-primary">댓글등록</button> 
 
                  
                   <button type="button" class="btn btn-primary" onClick={()=>{
-                    window.location= `/admin/tableUpdate/${board.id}`}}>수정 </button>
+                    window.location= `/admin/FreeUpdate/${freeBoard.id}`}}  >수정 </button>
+        
                    
                   <button type="button" class="btn btn-primary" >삭제</button> 
                   
@@ -190,14 +194,14 @@ const BoardDetail = () => {
   );
 };
 
-const Answer = ({id}) => {
+const FreeAnswer = ({id}) => {
   const [list, setList] = useState([]);
 
   useEffect(() => {
     axios({
-      url: 'http://localhost:8080/board/answer',
+      url: 'http://localhost:8080/board/freeAnswer',
       method: 'get',
-      params: { board_id: id }
+      params: { freeBoard_id: id }
     }).then((res) => {
       console.log(res.data);
       setList(res.data);
@@ -210,7 +214,7 @@ const Answer = ({id}) => {
     return (
       <h5>
       <tr>
-     <td>{"익명"}</td>
+     <td>{v.content2}</td>
 
         <td>
         <br />
@@ -240,5 +244,5 @@ location = `/board/delete/${num}`;
 });
 </script> */}
 
-export default BoardDetail;
+export default FreeBoardDetail;
 

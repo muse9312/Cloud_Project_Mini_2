@@ -18,6 +18,7 @@ public class Answer {
 	Long id;
 	
 	String content;
+
 	// Date createDate;
     // public void setUser(User user) {
     // }

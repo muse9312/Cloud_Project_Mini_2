@@ -21,6 +21,7 @@ public class QuizBoard {
 	private String title;
 	private String content;
 	private String userId;
+	private String content2;
 
 	// @Temporal(TemporalType.TIMESTAMP)
 	// Date nowDate;

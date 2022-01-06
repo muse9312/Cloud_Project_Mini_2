@@ -53,7 +53,7 @@ const QuizBoardDetail = () => {
           <div className="col">
             <Card className="shadow">
               <CardHeader className="border-0">
-                <h3 className="mb-0">익명게시판</h3>
+                <h3 className="mb-0">코드정보</h3>
               </CardHeader>
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
@@ -106,11 +106,13 @@ const QuizBoardDetail = () => {
 
                   const formData = new FormData();
                   const content = e.target['0'].value;
+                  const content2 = e.target['1'].value;
                   // const content = e.target['1'].value;
                   // const userId = e.target['2'].value;
                   // const nowDate = e.target['3'].value;
                   // formData.append("title", title);
                   formData.append("content", content);
+                  formData.append("content2", content2);
                   // formData.append("userId", userId);
                   // formData.append("nowDate", nowDate);
 
@@ -145,6 +147,7 @@ const QuizBoardDetail = () => {
                     <br />
                     <br />
                     <textarea class="form-control" name="content" id="content" rows="5" placeholder="댓글을 남겨보세요"></textarea>
+                    <input name="content2" id="content2" value={sessionStorage.getItem('name')}></input>
                   </div>
 
                   <button type="submit" class="btn btn-primary">댓글등록</button> 
@@ -211,7 +214,7 @@ const Answer = ({id}) => {
     return (
       <h5>
       <tr>
-     <td>{"오세원"}</td>
+     <td>{v.content2}</td>
 
         <td>
         <br />

@@ -1,5 +1,6 @@
 package com.groom.backend.model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -22,8 +23,8 @@ public class Board {
 	private String content;
 	private String userId;
 	
-	// @Temporal(TemporalType.TIMESTAMP)
-	// Date nowDate;
+	private Date creDate;
+	
 	
 	// @ManyToOne
 	// User user;

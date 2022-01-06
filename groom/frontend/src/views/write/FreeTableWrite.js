@@ -19,30 +19,13 @@ import {
   Container,
   Row,
   UncontrolledTooltip,
+  Label,
 } from "reactstrap";
 // core components
 import Header from "components/Headers/Header.js";
 import { Link } from 'react-router-dom';
-import BoardDetail from './BoardDetail';
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
-const QuizUpdate = ({board_id}) => {
-  const params = window.location.pathname;
-  const id = params.substring(params.lastIndexOf('/') + 1);
-  console.log("Update로 받아온 ID 값 :",id);
-  const [quizBoard, setQuizBoard] = useState({});
-  useEffect(() => {
-    axios({
-      url: 'http://localhost:8080/board/table/quizDetail',
-      method: 'get',
-      params: {  id: id}
-    }).then((res) => {
-      console.log("Table update의 데이터:");
-      console.log(res.data);
-      setQuizBoard(res.data);
-    });
-  }, []);
-
+const FreeTableWrite = () => {
 
   return (
 
@@ -55,7 +38,7 @@ const QuizUpdate = ({board_id}) => {
           <div className="col">
             <Card className="shadow">
               <CardHeader className="border-0">
-                <h3 className="mb-0">코드정보</h3>
+                <h3 className="mb-0">게시판</h3>
               </CardHeader>
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
@@ -85,14 +68,12 @@ const QuizUpdate = ({board_id}) => {
                           
               
                           axios({
-                            url: `http://localhost:8080/board/quizUpdate/${id}`,
+                            url: 'http://localhost:8080/board/freeTableWrite',
                             method: 'post',
                             data: formData,
                           }).then((res) => {
                             console.log(res.data);
-                          
-                           window.location = '/admin/quizTable/' ;
-                            // window.location = `/admin/tableDetail/${board_id}`;
+                            window.location = '/admin/freeTables';
                           });
               
                         }
@@ -100,18 +81,11 @@ const QuizUpdate = ({board_id}) => {
                         }>
                         <div class="form-group">
                           <label for="title">제목</label>
-                          <input type="text" class="form-control" name="title" id="title" value={quizBoard.title} 
-                          onChange={(e)=>{
-                            setQuizBoard({title:e.target.value});
-                          }}></input>
+                          <input type="text" class="form-control" name="title" id="title"></input>
                         </div>
                         <div class="form-group">
                           <label for="content">내용</label>
-                          <textarea class="form-control" name="content" id="content" rows="10" value={quizBoard.content}
-                          onChange={(e)=>{
-                            setQuizBoard({content:e.target.value});
-                            
-                          }}></textarea>
+                          <textarea class="form-control" name="content" id="content" rows="10"></textarea>
                         </div>
                         <div class="form-group">
                           <label for="content">첨부파일</label>
@@ -121,7 +95,9 @@ const QuizUpdate = ({board_id}) => {
                           <input label  name="content2" id="content2" value={sessionStorage.getItem('name')}></input>
                         </div>
                         
-                          <button type="submit" class="btn btn-primary">수정완료</button>
+                        
+                          <button type="submit" class="btn btn-primary">등록</button>
+                       
                       </form>
                       
                     </div>
@@ -156,4 +132,4 @@ const QuizUpdate = ({board_id}) => {
 };
 
 
-export default QuizUpdate;
+export default FreeTableWrite;

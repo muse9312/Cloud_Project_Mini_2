@@ -12,7 +12,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class QuizAnswer {
+public class FreeAnswer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long id;
@@ -29,5 +29,5 @@ public class QuizAnswer {
 	User user;
 	
 	@ManyToOne
-	QuizBoard quizBoard;
+	FreeBoard freeBoard;
 }

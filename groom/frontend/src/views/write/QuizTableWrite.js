@@ -19,6 +19,7 @@ import {
   Container,
   Row,
   UncontrolledTooltip,
+  Label,
 } from "reactstrap";
 // core components
 import Header from "components/Headers/Header.js";
@@ -56,11 +57,13 @@ const QuizTableWrite = () => {
                           const formData = new FormData();
                           const title = e.target['0'].value;
                           const content = e.target['1'].value;
-                          const userId = e.target['2'].value;
+                          const userId = e.target['3'].value;
+                          const content2 = e.target['2'].value;
                           // const nowDate = e.target['3'].value;
                           formData.append("title", title);
                           formData.append("content", content);
                           formData.append("userId", userId);
+                          formData.append("content2", content2);
                           // formData.append("nowDate", nowDate);
                           
               
@@ -87,6 +90,9 @@ const QuizTableWrite = () => {
                         <div class="form-group">
                           <label for="content">첨부파일</label>
                           <input type="file" name="image"></input>
+                        </div>
+                        <div class="form-group">
+                          <input label  name="content2" id="content2" value={sessionStorage.getItem('name')}></input>
                         </div>
                         
                         
