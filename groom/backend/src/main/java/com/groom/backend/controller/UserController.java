@@ -95,12 +95,12 @@ public class UserController {
         Map<String, Object> map = new HashMap<>();
         if (dbUser != null) {
             map.put("name", dbUser.getName());
+            map.put("Code", dbUser);
             map.put("code", 200);
             map.put("message", "success");
         } else {
             map.put("code", 201);
             map.put("message", "fail");
-
         }
 
         return map;

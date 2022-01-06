@@ -67,7 +67,11 @@
     "react-scripts": "4.0.3",
     "reactstrap": "8.9.0",
     "styled-components": "^5.3.3",
-    "time-counting": "^2.0.2"
+
+    "time-counting": "^2.0.2",
+
+    "sweetalert2": "^11.3.3"
+
   },
   "devDependencies": {
     "gulp": "4.0.2",

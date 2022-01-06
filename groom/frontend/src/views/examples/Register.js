@@ -12,12 +12,70 @@ import {
   InputGroupText,
   InputGroup,
   Row,
-  Col,
+  Col
 } from "reactstrap";
 
-
-
 const Register = () => {
+
+  // function ValidationCheck(e) {
+
+  //   //비밀번호 영문자+숫자+특수조합(8~25자리 입력) 정규식
+  //   var pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
+
+  //   // 이메일이 적합한지 검사할 정규식
+  //   var emailCheck = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+  //   if (res.data.name === "") {
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: 'Oops...',
+  //       text: 'Please put your name!',
+  //     })
+  //     return false
+  //   }
+  //   else if (res.data.email === "") {
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: 'Oops...',
+  //       text: 'Please put your email!',
+  //     })
+  //     return false
+  //   }
+  //   else if (!emailCheck.test(res.data.email)) {
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: 'Oops...',
+  //       text: 'Please put it in the email format!',
+  //     })
+  //     return false
+  //   }
+  //   else if (res.data.pwd === "") {
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: 'Oops...',
+  //       text: 'Please put your Password!',
+  //     })
+  //     return false
+  //   }
+  //   else if (!pwdCheck.test(res.data.pwd)) {
+  //     Swal.fire({
+  //       icon: 'error',
+  //       title: 'Oops...',
+  //       text: 'You have to use 8 to 25 digits of the password in combination with English letters, numbers, and special characters!',
+  //     })
+  //     return false
+  //   }
+
+  //   else if (!res.data.name == "" && !res.data.email == "" && !res.data.pwd == "") {
+  //     Swal.fire(
+  //       'Registration complete!',
+  //       'return to the login screen.',
+  //       'success'
+  //     )
+  //     window.location = '/';
+  //     return true;
+  //   }
+  // }
 
   function BackLogin(e) {
     e.preventDefault();
@@ -32,163 +90,139 @@ const Register = () => {
     console.log(e.target['1'].value);
     console.log(e.target['2'].value);
 
-
     const formData = new FormData();
-    const name = e.target['0'].value;
-    const email = e.target['1'].value;
-    const pwd = e.target['2'].value;
+    const name = e
+      .target['0']
+      .value;
+    const email = e
+      .target['1']
+      .value;
+    const pwd = e
+      .target['2']
+      .value;
 
     formData.append("name", name);
     formData.append("email", email);
     formData.append("pwd", pwd);
 
-    axios({
-      url: 'http://localhost:8080/api/res',
-      method: 'post',
-      data: formData
-    })
-      .then(function (res) {
+    axios({ url: 'http://localhost:8080/api/res', method: 'post', data: formData }).then(
+      function (res) {
         console.log(res.data);
-        if (res.data.code === 200) {
-         alter('회원가입 성공')
-
-
-        }
-
+        Swal.fire(
+          'Registration complete!',
+          'return to the login screen.',
+          'success'
+        )
         window.location = '/';
 
-      })
+      }
+
+    )
 
 
   }
 
-
   return (
-    <>
-      <Col lg="6" md="8">
-        <Card className="bg-secondary shadow border-0">
+    <> < Col lg="6" md="8" > <Card className="bg-secondary shadow border-0">
 
-          <CardBody className="px-lg-5 py-lg-5">
-            <Form role="form" onSubmit={SendData}>
+      <CardBody className="px-lg-5 py-lg-5">
+        <Form role="form" onSubmit={SendData}>
 
+          {/* 회원가입 input  */}
 
+          {/* 이름 */}
+          <FormGroup>
+            <InputGroup className="input-group-alternative mb-3">
+              <InputGroupAddon addonType="prepend">
+                <InputGroupText>
+                  <i className="ni ni-hat-3" />
+                </InputGroupText>
+              </InputGroupAddon>
+              <Input placeholder="Name" type="text" id="name" name="name" />
+            </InputGroup>
+          </FormGroup>
 
-              {/* 회원가입 input  */}
+          {/* 이메일 */}
+          <FormGroup>
+            <InputGroup className="input-group-alternative mb-3">
+              <InputGroupAddon addonType="prepend">
+                <InputGroupText>
+                  <i className="ni ni-email-83" />
+                </InputGroupText>
+              </InputGroupAddon>
+              <Input id="email" name="email" placeholder="name@example.com" type="email" />
+            </InputGroup>
+          </FormGroup>
 
-              {/* 이름 */}
-              <FormGroup>
-                <InputGroup className="input-group-alternative mb-3">
-                  <InputGroupAddon addonType="prepend">
-                    <InputGroupText>
-                      <i className="ni ni-hat-3" />
-                    </InputGroupText>
-                  </InputGroupAddon>
-                  <Input placeholder="Name" type="text" id="name" name="name" />
-                </InputGroup>
-              </FormGroup>
+          {/* 패스워드 */}
+          <FormGroup>
+            <InputGroup className="input-group-alternative">
+              <InputGroupAddon addonType="prepend">
+                <InputGroupText>
+                  <i className="ni ni-lock-circle-open" />
+                </InputGroupText>
+              </InputGroupAddon>
+              <Input
+                placeholder="Password"
+                type="password"
+                id="pwd"
+                name="pwd"
+                autoComplete="new-password" />
+            </InputGroup>
+          </FormGroup>
 
-              {/* 이메일 */}
-              <FormGroup>
-                <InputGroup className="input-group-alternative mb-3">
-                  <InputGroupAddon addonType="prepend">
-                    <InputGroupText>
-                      <i className="ni ni-email-83" />
-                    </InputGroupText>
-                  </InputGroupAddon>
-                  <Input
-                    id="email" name="email"
-                    placeholder="name@example.com"
-                    type="email"
-                  />
-                </InputGroup>
-              </FormGroup>
+          <div className="text-muted font-italic">
+            <small>
+              password strength:{" "}
+              <span className="text-success font-weight-700">strong</span>
+            </small>
+          </div>
 
+          {/* 동의 */}
 
-              {/* 패스워드 */}
-              <FormGroup>
-                <InputGroup className="input-group-alternative">
-                  <InputGroupAddon addonType="prepend">
-                    <InputGroupText>
-                      <i className="ni ni-lock-circle-open" />
-                    </InputGroupText>
-                  </InputGroupAddon>
-                  <Input
-                    placeholder="Password"
-                    type="password"
-                    id="pwd" name="pwd"
-                    autoComplete="new-password"
-                  />
-                </InputGroup>
-              </FormGroup>
-
-
-              <div className="text-muted font-italic">
-                <small>
-                  password strength:{" "}
-                  <span className="text-success font-weight-700">strong</span>
-                </small>
+          <Row className="my-4">
+            <Col xs="12">
+              <div className="custom-control custom-control-alternative custom-checkbox">
+                <input
+                  className="custom-control-input"
+                  id="customCheckRegister"
+                  type="checkbox" />
+                <label className="custom-control-label" htmlFor="customCheckRegister">
+                  <span className="text-muted">
+                    I agree with the{" "}
+                    <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                      Privacy Policy
+                    </a>
+                  </span>
+                </label>
               </div>
+            </Col>
+          </Row>
 
-              {/* 동의 */}
+          {/* 회원가입버튼  */}
 
+          <div className="text-center">
+            <Button className="mt-4" color="primary" type="submit" id="res">
 
-              <Row className="my-4">
-                <Col xs="12">
-                  <div className="custom-control custom-control-alternative custom-checkbox">
-                    <input
-                      className="custom-control-input"
-                      id="customCheckRegister"
-                      type="checkbox"
-                    />
-                    <label
-                      className="custom-control-label"
-                      htmlFor="customCheckRegister"
-                    >
-                      <span className="text-muted">
-                        I agree with the{" "}
-                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                          Privacy Policy
-                        </a>
-                      </span>
-                    </label>
-                  </div>
-                </Col>
-              </Row>
+              Create account
+            </Button>
 
+          </div>
 
-              {/* 회원가입버튼  */}
+        </Form>
+      </CardBody>
+    </Card>
 
+      <Row className="mt-3">
 
-              <div className="text-center">
-                <Button className="mt-4" color="primary" type="submit" id="res" >
+        <Col className="text-right" xs="7">
 
-                  Create account
-                </Button>
-
-              </div>
-
-
-            </Form>
-          </CardBody>
-        </Card>
-
-        <Row className="mt-3">
-
-
-
-          <Col className="text-right" xs="7">
-
-
-            <a
-              className="text-light"
-              href="/auth/register"
-              onClick={BackLogin}
-            >
-              <small>Back to Login</small>
-            </a>
-          </Col>
-        </Row>
-      </Col>
+          <a className="text-light" href="/auth/register" onClick={BackLogin}>
+            <small>Back to Login</small>
+          </a>
+        </Col>
+      </Row>
+    </Col>
     </>
   );
 };
