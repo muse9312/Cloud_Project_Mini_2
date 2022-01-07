@@ -41,6 +41,21 @@ const Tables = (props) => {
     });
   }, []); // deps
 
+  const [StartPage, setStartPage] = useState([]);
+
+  useEffect(() => {
+    axios({
+      url: 'http://localhost:8080/board/pagination',
+      method: 'get'
+    }).then((res) => {
+      console.log(res.data);
+      setStartPage(res.data);
+    });
+  }, []); // deps
+
+
+
+
 
 
   return (
@@ -53,7 +68,7 @@ const Tables = (props) => {
           <div className="col">
             <Card className="shadow">
               <CardHeader className="border-0">
-                <h3 className="mb-0">게시판</h3>
+                <h3 className="mb-0">익명게시판</h3>
               </CardHeader>
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
@@ -62,8 +77,8 @@ const Tables = (props) => {
                     <th scope="col">순서</th>
                     <th scope="col">제목</th>
                     <th scope="col">작성자</th>
+                    <th scope="col">작성일</th>
                     <th scope="col">조회</th>
-                    <th scope="col">좋아요</th>
                     <th scope="col" />
 
 
@@ -84,7 +99,7 @@ const Tables = (props) => {
                           </a>
                         </td>
                         <td>{v.userId}</td>
-                        {/* <td>{v.nowDate}</td>  */}
+                        <td>{v.creDate}</td>
                       </tr>
                     );
                   })}
@@ -108,6 +123,7 @@ const Tables = (props) => {
                         <button type="button" class="btn btn-primary btn-block" id="write-btn">글쓰기</button>
                       </Link>
                     </>
+
                     <PaginationItem className="disabled">
                       <PaginationLink
                         href="#pablo"
@@ -118,6 +134,8 @@ const Tables = (props) => {
                         <span className="sr-only">Previous</span>
                       </PaginationLink>
                     </PaginationItem>
+
+                    
                     <PaginationItem className="active">
 
                       <PaginationLink
@@ -168,6 +186,5 @@ const Tables = (props) => {
     </>
   );
 };
-
 
 export default Tables;

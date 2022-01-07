@@ -57,11 +57,11 @@ const TableWrite = () => {
                           const title = e.target['0'].value;
                           const content = e.target['1'].value;
                           const userId = e.target['2'].value;
-                          // const nowDate = e.target['3'].value;
+                         
                           formData.append("title", title);
                           formData.append("content", content);
                           formData.append("userId", userId);
-                          // formData.append("nowDate", nowDate);
+                
                           
               
                           axios({
