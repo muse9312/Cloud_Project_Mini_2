@@ -17,66 +17,6 @@ import {
 
 const Register = () => {
 
-  // function ValidationCheck(e) {
-
-  //   //비밀번호 영문자+숫자+특수조합(8~25자리 입력) 정규식
-  //   var pwdCheck = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/;
-
-  //   // 이메일이 적합한지 검사할 정규식
-  //   var emailCheck = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
-  //   if (res.data.name === "") {
-  //     Swal.fire({
-  //       icon: 'error',
-  //       title: 'Oops...',
-  //       text: 'Please put your name!',
-  //     })
-  //     return false
-  //   }
-  //   else if (res.data.email === "") {
-  //     Swal.fire({
-  //       icon: 'error',
-  //       title: 'Oops...',
-  //       text: 'Please put your email!',
-  //     })
-  //     return false
-  //   }
-  //   else if (!emailCheck.test(res.data.email)) {
-  //     Swal.fire({
-  //       icon: 'error',
-  //       title: 'Oops...',
-  //       text: 'Please put it in the email format!',
-  //     })
-  //     return false
-  //   }
-  //   else if (res.data.pwd === "") {
-  //     Swal.fire({
-  //       icon: 'error',
-  //       title: 'Oops...',
-  //       text: 'Please put your Password!',
-  //     })
-  //     return false
-  //   }
-  //   else if (!pwdCheck.test(res.data.pwd)) {
-  //     Swal.fire({
-  //       icon: 'error',
-  //       title: 'Oops...',
-  //       text: 'You have to use 8 to 25 digits of the password in combination with English letters, numbers, and special characters!',
-  //     })
-  //     return false
-  //   }
-
-  //   else if (!res.data.name == "" && !res.data.email == "" && !res.data.pwd == "") {
-  //     Swal.fire(
-  //       'Registration complete!',
-  //       'return to the login screen.',
-  //       'success'
-  //     )
-  //     window.location = '/';
-  //     return true;
-  //   }
-  // }
-
   function BackLogin(e) {
     e.preventDefault();
     window.location.href = "/auth/login"
@@ -108,17 +48,14 @@ const Register = () => {
     axios({ url: 'http://localhost:8080/api/res', method: 'post', data: formData }).then(
       function (res) {
         console.log(res.data);
-        Swal.fire(
-          'Registration complete!',
-          'return to the login screen.',
-          'success'
-        )
-        window.location = '/';
+        Swal.fire('Registration complete!', 'return to the login screen.', 'success')
+        setTimeout(function () {
+          window.location = '/';
+        }, 500);
 
       }
 
     )
-
 
   }
 
