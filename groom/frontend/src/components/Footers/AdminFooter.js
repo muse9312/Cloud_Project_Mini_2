@@ -44,9 +44,9 @@ const Footer = () => {
 
             <NavItem>
               <NavLink
-                href=""
+                href="http://localhost:3000/admin/aboutus"
                 rel="noopener noreferrer"
-                target="_blank"
+                //target="_blank"
               >
                 About Us
               </NavLink>

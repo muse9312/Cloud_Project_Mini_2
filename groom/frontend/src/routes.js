@@ -7,7 +7,8 @@ import Tables from "views/board/Tables.js";
 import Notice from "views/board/Notice.js";
 import Register from "views/examples/Register.js";
 import TableWrite from "views/write/TableWrite.js";
-
+import AboutUs from "views/examples/AboutUs.js";
+import CodingStudy from "views/board/CodingStudy.js";
 import BoardDetail from "views/board/BoardDetail";
 
 import Profile from "views/examples/Profile.js";
@@ -69,7 +70,14 @@ var routes = [
     component: Quiz,
     layout: "/admin",
   },
-
+  {
+    path: "/CodingStudy",
+    name: "코딩 공부 자료",
+    icon: "ni ni-ruler-pencil text-blue",
+    component: CodingStudy,
+    layout: "/admin",
+  },
+  
 
 
 
@@ -81,7 +89,11 @@ var routes = [
   <br />, <br />, <br />, <br />, <br />, <br />,
   <br />, <br />, <br />, <br />, <br />, <br />,
 
-
+  {
+    path: "/aboutUs",
+    component: AboutUs,
+    layout: "/admin",
+  },
 
 
   {
@@ -112,6 +124,8 @@ var routes = [
     component: TableWrite,
     layout: "/admin",
   },
+ 
+
 
 ];
 
