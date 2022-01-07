@@ -3,9 +3,7 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
-
-
+import curriculum2 from "./curriculum2.JPG"
 
 
 // node.js library that concatenates classes (strings)
@@ -54,7 +52,6 @@ const Index = (props) => {
   const [newsMainArray, setNewsMainArray] = useState([]);
   const [newsMainResults, setNewsMainResults] = useState();
 
-
   const [activeNav, setActiveNav] = useState(1);
   const [chartExample1Data, setChartExample1Data] = useState("data1");
 
@@ -88,7 +85,6 @@ const Index = (props) => {
 
   const newsApi = async () => {
     try {
-
 
       const news = await axios.get(
         `https://newsapi.org/v2/top-headlines?country=us&apiKey=1269ddcc25814aec9cb99df554126760&category=technology&pageSize=1`
@@ -156,6 +152,7 @@ const Index = (props) => {
               </CardBody>
             </Card>
           </Col>
+
           <Col xl="4">
             <Card className="shadow">
               <CardHeader className="bg-transparent">
@@ -170,11 +167,10 @@ const Index = (props) => {
               </CardHeader>
 
               <CardBody>
-                {/* Chart */}
                 <div className="chart">
                   <Bar
-                    data={chartExample2.data}
-                    options={chartExample2.options}
+                  // data={chartExample2.data}
+                  // options={chartExample2.options}
                   />
                 </div>
               </CardBody>
@@ -209,19 +205,15 @@ const Index = (props) => {
               </CardHeader>
 
               <Table className="align-items-center table-flush" responsive>
-
                 <thead className="thead-light">
                   <tr>
-
                     <th scope="col">게시글번호</th>
                     <th scope="col">제목</th>
                     <th scope="col">작성자</th>
-
                   </tr>
                 </thead>
 
                 <tbody>
-
                   {list.map((v) => {
                     return (
                       <tr>
@@ -230,81 +222,25 @@ const Index = (props) => {
                         <th scope="row">{v.userId}</th>
                       </tr>
                     );
-                  })}
 
+                  })
+                  }
                 </tbody>
-
               </Table>
             </Card>
           </Col>
 
 
-          {/* 과정 시간표///////////// */}
           <Col xl="4">
             <Card className="shadow">
               <CardHeader className="border-0">
                 <Row className="align-items-center">
                   <div className="col">
-                    <h3 className="mb-0">과정 일정표</h3>
+                    <h3 className="mb-0">클라우드 교육과정 일정표</h3>
                   </div>
-
-                  {/* <div className="col text-right">
-                    <Button
-                      color="primary"
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault()}
-                      size="sm"
-                    >
-                      See all
-                    </Button>
-                  </div> */}
-
                 </Row>
               </CardHeader>
-
-              <Table className="align-items-center table-flush" responsive>
-                <thead className="thead-light">
-
-                  <tr>
-                    <th scope="col">과정(강사님)</th>
-                    <th scope="col">날짜</th>
-                    {/* <th scope="col" /> */}
-                  </tr>
-                </thead>
-                <tbody>
-
-                  <tr>
-                    <th scope="row">사용자인터페이스개발을위한리액트프로그래밍(김남현)</th>
-                    <td>12/5-12/16</td>
-                  </tr>
-
-                  <tr>
-                    <th scope="row">마이크로서비스개발을위한springboo/spring security(김남현)</th>
-                    <td>12/19-12/31</td>
-                  </tr>
-
-                  <tr>
-                    <th scope="row">모듈프로젝트2(김남현)</th>
-                    <td>1/3-1/7</td>
-                  </tr>
-
-                  <tr>
-                    <th scope="row">테스트주도개발/도메인주도개발/행동주도개발(김남현)</th>
-                    <td>1/10-1/12</td>
-                  </tr>
-
-                  <tr>
-                    <th scope="row">멘토링(멘토)</th>
-                    <td>1/22</td>
-                  </tr>
-
-                  <tr>
-                    <th scope="row">마이크로서비스환경구축을위한클라우드기본기술(홍혜선)</th>
-                    <td>1/13-1/28</td>
-                  </tr>
-
-                </tbody>
-              </Table>
+              <img className="curriculum2" src={curriculum2} />
             </Card>
           </Col>
         </Row>

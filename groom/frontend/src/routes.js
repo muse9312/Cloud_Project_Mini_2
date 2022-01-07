@@ -36,6 +36,7 @@ var routes = [
     component: Tables,
     layout: "/admin",
   },
+
   {
     path: "/tables",
     name: "자유게시판",
