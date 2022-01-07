@@ -280,28 +280,26 @@ const Header = (props) => {
                           </span>
                         </center>
 
-                        className="text-uppercase text-muted mb-0"
-                        >
-                        수료일까지
-                      </CardTitle>
-                      <span className="h2 font-weight-bold mb-0">D-50</span>
 
-                    </div>
 
-                    <Col className="col-auto">
-                      <div className="icon icon-shape bg-info text-white rounded-circle shadow">
-                        <i className="fas fa-cloud" />
+                        <span className="h2 font-weight-bold mb-0">D-50</span>
+
                       </div>
-                    </Col>
 
-                  </Row>
-                  <p className="mt-3 mb-0 text-muted text-sm">
+                      <Col className="col-auto">
+                        <div className="icon icon-shape bg-info text-white rounded-circle shadow">
+                          <i className="fas fa-cloud" />
+                        </div>
+                      </Col>
 
-                    <span className="text-nowrap">수료일: 2022.04.29</span>
-                  </p>
+                    </Row>
+                    <p className="mt-3 mb-0 text-muted text-sm">
 
-                </CardBody>
+                      <span className="text-nowrap">수료일: 2022.04.29</span>
+                    </p>
 
+                  </CardBody>
+                </Card>
 
 
               </Col>

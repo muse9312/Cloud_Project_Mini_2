@@ -23,7 +23,7 @@ import {
 } from "reactstrap";
 // core components
 import Header from "components/Headers/Header.js";
-import Dropdown from "./Dropdown";
+
 
 
 // const Tables = () => {
@@ -85,7 +85,7 @@ const Quiz = (props) => {
                         </td>
                         {/* <td>{v.userId}</td> */}
                         <td>{v.userId}</td>
-                        <td>{v.creDate}</td>  
+                        <td>{v.creDate}</td>
                         {/* <td>{v.nowDate}</td>  */}
                       </tr>
                     );

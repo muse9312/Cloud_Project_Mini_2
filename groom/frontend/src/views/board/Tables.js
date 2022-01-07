@@ -23,7 +23,6 @@ import {
 } from "reactstrap";
 // core components
 import Header from "components/Headers/Header.js";
-import Dropdown from "./Dropdown";
 
 
 // const Tables = () => {
@@ -135,7 +134,7 @@ const Tables = (props) => {
                       </PaginationLink>
                     </PaginationItem>
 
-                    
+
                     <PaginationItem className="active">
 
                       <PaginationLink
