@@ -17,9 +17,36 @@
 */
 
 // reactstrap components
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
 
-const Header = () => {
+
+const Header = (props) => {
+
+
+  // const [title, settitle] = useState('');
+  // const [viewCnt, setviewCnt] = useState('');
+  // const [userId, setUserId] = useState('');
+
+  const [bestboard, setBestBoard] = useState([]);
+
+  useEffect(() => {
+
+    axios({
+      url: 'http://localhost:8080/board/best',
+      method: 'get'
+    }).then((res) => {
+      console.log(res.data);
+      setBestBoard(res.data);
+      // settitle(res.title);
+      // setviewCnt(res.viewCnt);
+      // setUserId(res.userId);
+    });
+  }, []); // deps
+
+
+
   return (
     <>
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8">
@@ -69,7 +96,7 @@ const Header = () => {
                         >
                           인기글
                         </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">멋쟁이김준기</span>
+                        <span className="h2 font-weight-bold mb-0">{bestboard.title}</span>
                       </div>
                       <Col className="col-auto">
                         <div className="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -79,9 +106,9 @@ const Header = () => {
                     </Row>
                     <p className="mt-3 mb-0 text-muted text-sm">
                       <span className="text-danger mr-2">
-                        <i className="fa fa-arrow-up" /> 조회수52
+                        <i className="fa fa-arrow-up" /> 조회수 {bestboard.viewCnt}
                       </span>{" "}
-                      <span className="text-nowrap">나는야 멋쟁이 김준기</span>
+                      <span className="text-nowrap">{bestboard.userId}</span>
                     </p>
                   </CardBody>
                 </Card>

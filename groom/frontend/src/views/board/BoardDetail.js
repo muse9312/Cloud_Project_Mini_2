@@ -25,13 +25,18 @@ import Header from "components/Headers/Header.js";
 import { Link, useParams } from 'react-router-dom';
 
 const BoardDetail = () => {
+
+
+
+
+  
   const params = window.location.pathname;
   const id = params.substring(params.lastIndexOf('/') + 1);
 
   const [board, setBoard] = useState([]);
   useEffect(() => {
     axios({
-      url: 'http://localhost:8080/board/table/detail',
+      url: `http://localhost:8080/board/table/detail`,
       method: 'get',
       params: { id: id }
     }).then((res) => {
@@ -39,8 +44,21 @@ const BoardDetail = () => {
       console.log(res.data);
       setBoard(res.data);
     });
-  }, []);
-  
+  },
+  []);
+
+
+  // axios({
+  //   url: `http://localhost:8080/board/table/delete/${id}`,
+  //   method: 'get'
+  // }).then((res) => {
+  //   console.log("res DATA 확인");
+  //   console.log(res.data);
+  //   setBoard(res.data);
+  // });
+
+
+
 
   return (
 
@@ -125,6 +143,9 @@ const BoardDetail = () => {
                     window.location = `/admin/tableDetail/${id}`;
                   });
 
+
+                  
+
                 }
 
                 }>
@@ -136,8 +157,8 @@ const BoardDetail = () => {
 
                   </div>
                   <div class="form-group">
-                 
-                  
+                
+
                     <label for="content">댓글</label>
                     <br />
                     <br />
@@ -147,33 +168,39 @@ const BoardDetail = () => {
                     <textarea class="form-control" name="content" id="content" rows="5" placeholder="댓글을 남겨보세요"></textarea>
                   </div>
 
-                  <button type="submit" class="btn btn-primary">댓글등록</button> 
+                  <button type="submit" class="btn btn-primary">댓글등록</button>
 
-                 
-                  <button type="button" class="btn btn-primary" onClick={()=>{
-                    window.location= `/admin/tableUpdate/${board.id}`}}>수정 </button>
-                   
-                  <button type="button" class="btn btn-primary" >삭제</button> 
                   
-                   <Link to="/admin/tables">   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-                        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-                        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-                        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-                        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-                        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-                        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-                   
+                  <button type="button" class="btn btn-primary" onClick={() => {
+                    window.location = `/admin/tableUpdate/${board.id}`
+                  }}>수정 </button>
+
+
+
+
+                  <button type="button" class="btn btn-primary"onClick={()=>{
+                    window.location= `/admin/tableDelete/${board.id}`}} >삭제</button> 
+
+
+                  <Link to="/admin/tables">   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                    &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                    &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                    &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                    &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                    &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                    &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+
                     <button type="button" class="btn btn-primary" >목록</button>
-                    </Link>
-                  
-        
-             
-                
-              
+                  </Link>
+
+
+
+
+
                 </CardFooter>
-              
+
               </form>
-              
+
             </Card>
           </div>
 
@@ -190,7 +217,7 @@ const BoardDetail = () => {
   );
 };
 
-const Answer = ({id}) => {
+const Answer = ({ id }) => {
   const [list, setList] = useState([]);
 
   useEffect(() => {
@@ -206,29 +233,29 @@ const Answer = ({id}) => {
 
   return (
     <tbody>
-    {list.map((v) => {
-    return (
-      <h5>
-      <tr>
-     <td>{"익명"}</td>
+      {list.map((v) => {
+        return (
+          <h5>
+            <tr>
+              <td>{"익명"}</td>
 
-        <td>
-        <br />
-        {"┕ "+v.content}
-        </td>
-        {/* <td>{v.userId}</td> */}
-        {/* <td>{v.nowDate}</td>  */}
-      </tr>
-      </h5>
-      );
-    })}
+              <td>
+                <br />
+                {"┕ " + v.content}
+              </td>
+              {/* <td>{v.userId}</td> */}
+              {/* <td>{v.nowDate}</td>  */}
+            </tr>
+          </h5>
+        );
+      })}
 
 
     </tbody>
- 
+
   )
 
-  
+
 }
 {/* <script>
 document.querySelector('#delete').addEventListener('click', (e) => {

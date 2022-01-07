@@ -13,6 +13,6 @@ import com.groom.backend.model.QuizBoard;
 
 public interface FreeAnswerRepository extends JpaRepository<FreeAnswer, Long> {
 
-    List<FreeAnswer> findByFreeBoard(FreeBoard freeBoard, Sort sort);
+    public List<FreeAnswer> findByFreeBoard(FreeBoard freeBoard, Sort sort);
    
 }

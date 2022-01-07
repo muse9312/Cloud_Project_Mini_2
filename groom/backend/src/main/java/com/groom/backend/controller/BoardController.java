@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 
-// import com.groom.backend.Service.BoardService;
 import com.groom.backend.model.Answer;
 // import com.groom.backend.model.Answer;
 import com.groom.backend.model.Board;
@@ -27,6 +27,7 @@ import com.groom.backend.repository.NoticeBoardRepository;
 import com.groom.backend.repository.QuizAnswerRepository;
 import com.groom.backend.repository.QuizBoardRepository;
 
+import org.apache.commons.logging.Log;
 import org.aspectj.weaver.patterns.TypePatternQuestions.Question;
 import org.hibernate.annotations.Tables;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -65,21 +67,10 @@ public class BoardController {
     @Autowired
     FreeBoardRepository freeBoardRepository;
 
-    // @Autowired
-    // BoardService boardService;
 
     @Autowired
     HttpSession session;
 
-
-
-    // @GetMapping("/admin/index")
-    // public String index(Long id, Model model, @PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
-
-    //     model.addAttribute("view", boardService.updateView(id));
- 
-    //     return "/admin/index";
-    // }
 
 
     // write
@@ -232,9 +223,10 @@ public class BoardController {
 
     @GetMapping("/tables")
     @ResponseBody
-    public List<Board> boardList() {
+    public List<Board> boardList(Long id) {
         Sort sort = Sort.by(Order.desc("id"));
         List<Board> list = boardRepository.findAll(sort);
+        
         return list;
 
     }
@@ -267,10 +259,16 @@ public class BoardController {
 
     @GetMapping("/table/detail")
     @ResponseBody
-    public Board boardDetail(Model model, Long id) {
+    public Board boardDetail(Long id) {
+        //조회수 증가
         Optional<Board> opt = boardRepository.findById(id);
+        Board board = opt.get();
+        board.setViewCnt(board.getViewCnt() + 1);
+        boardRepository.save(board);
         return opt.get();
     }
+
+
     @GetMapping("/table/quizDetail")
     @ResponseBody
     public QuizBoard quizBoardDetail(Model model, Long id) {
@@ -309,6 +307,7 @@ public class BoardController {
         board.setId(id);
         // board.setContent(content);
         boardRepository.save(board);
+        
         return board;
     }
 
@@ -346,14 +345,116 @@ public class BoardController {
 
     //삭제
 
-    @GetMapping("/table/delete")
+    @GetMapping("/table/delete/{id}")
     @ResponseBody
     public String tableDelete(@PathVariable("id") long id) {
+
+        // opt = boardRepository.deleteById(id);
+        
+        // Board board = opt.get();
+        // board.dele
+        // boardRepository.save(board);
+        // return opt.get();
+
+
         boardRepository.deleteById(id);
-        return "table/delete";
+
+        // return "redirect:/";
+        return "/admin/tables";
     }
 
 
+
+
+
+
+
+
+    //인기글
+    @GetMapping("/best")
+    @ResponseBody
+    public Board bestView(@ModelAttribute Board board) {
+        Board bestBoard = boardRepository.findTopByOrderByViewCntDesc();
+
+        return bestBoard;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //페이지
+
+
+
+
+
+    // @GetMapping("/admin/index")
+    // @ResponseBody
+    // public String topView(@PathVariable("id") long id) {
+    //     List<Board> list = boardRepository.findTop1ByOrderByIdDesc(board, sort);
+    //     return list;
+    // }
+
+
+
+    // @GetMapping("/tables")
+	// @ResponseBody
+
+
+    // return opt.get();
+    // }
+
+
+
+    // @GetMapping("/index")
+    // @ResponseBody
+    // public List<Board> bestBoard(Long id) {
+
+    //    List<Board> list = boardRepository.findTop1ByOrderBySeqDesc(id);
+
+    //     return list;
+    // }
+
+
+
+
+
+//     @GetMapping("/noticeTables")
+//     @ResponseBody
+//     public List<NoticeBoard> noticeBoardList() {
+//         Sort sort = Sort.by(Order.desc("id"));
+//         List<NoticeBoard> list = noticeBoardRepository.findAll(sort);
+//         return list;
+// }
+
+
+
+
+// @GetMapping("/tables")
+// @ResponseBody
+// public List<Board> besViewList(Long id) {
+//     Sort sort = Sort.by(Order.desc("viewCnt"));
+//     List<Board> list = boardRepository.findTop1ByOrderBySeqDesc(sort);
+
+//     return list;
+
+//     }
+
+
+
+
+
+
+
 
 }
