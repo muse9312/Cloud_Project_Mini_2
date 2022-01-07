@@ -24,16 +24,20 @@ import {
 import Header from "components/Headers/Header.js";
 import { Link } from 'react-router-dom';
 import BoardDetail from './BoardDetail';
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 const TableUpdate = ({board_id}) => {
-
-  const [board, setBoard] = useState([]);
+  const params = window.location.pathname;
+  const id = params.substring(params.lastIndexOf('/') + 1);
+  console.log("Update로 받아온 ID 값 :",id);
+  const [board, setBoard] = useState({});
   useEffect(() => {
     axios({
-      url: 'http://localhost:8080/board/table/update',
+      url: 'http://localhost:8080/board/table/detail',
       method: 'get',
-      params: {  id: board_id}
+      params: {  id: id}
     }).then((res) => {
+      console.log("Table update의 데이터:");
       console.log(res.data);
       setBoard(res.data);
     });
@@ -51,7 +55,7 @@ const TableUpdate = ({board_id}) => {
           <div className="col">
             <Card className="shadow">
               <CardHeader className="border-0">
-                <h3 className="mb-0">게시판</h3>
+                <h3 className="mb-0">익명게시판</h3>
               </CardHeader>
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
@@ -79,14 +83,14 @@ const TableUpdate = ({board_id}) => {
                           
               
                           axios({
-                            url: 'http://localhost:8080/board/table/update',
+                            url: `http://localhost:8080/board/table/update/${id}`,
                             method: 'post',
                             data: formData,
                           }).then((res) => {
                             console.log(res.data);
                           
-                            // window.location = '/admin/tableDetail/' + board_id;
-                            window.location = `/admin/tableDetail/${board_id}`;
+                           window.location = '/admin/tables/' ;
+                            // window.location = `/admin/tableDetail/${board_id}`;
                           });
               
                         }
@@ -94,20 +98,25 @@ const TableUpdate = ({board_id}) => {
                         }>
                         <div class="form-group">
                           <label for="title">제목</label>
-                          <input type="text" class="form-control" name="title" id="title" value={board.title}></input>
+                          <input type="text" class="form-control" name="title" id="title" value={board.title} 
+                          onChange={(e)=>{
+                            setBoard({title:e.target.value});
+                          }}></input>
                         </div>
                         <div class="form-group">
                           <label for="content">내용</label>
-                          <textarea class="form-control" name="content" id="content" rows="10">{board.content}</textarea>
+                          <textarea class="form-control" name="content" id="content" rows="10" value={board.content}
+                          onChange={(e)=>{
+                            setBoard({content:e.target.value});
+                            
+                          }}></textarea>
                         </div>
                         <div class="form-group">
                           <label for="content">첨부파일</label>
                           <input type="file" name="image"></input>
                         </div>
                         
-                        <Link to={`/admin/tableDetail/${id}`}>
                           <button type="submit" class="btn btn-primary">수정완료</button>
-                       </Link>
                       </form>
                       
                     </div>

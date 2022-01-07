@@ -18,7 +18,7 @@ public class MypageController {
     @Autowired
     HttpSession httpSession;
 
-    @RequestMapping(value = "/mypage")
+    @RequestMapping(value = "/admin/user-profile")
 	public String mypage() throws Exception{
 		return "/member/mypage";
 	}

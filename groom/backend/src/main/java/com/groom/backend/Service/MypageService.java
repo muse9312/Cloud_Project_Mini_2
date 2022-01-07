@@ -1,4 +1,4 @@
-package com.groom.backend.service;
+package com.groom.backend.Service;
 
 import com.groom.backend.model.User;
 
