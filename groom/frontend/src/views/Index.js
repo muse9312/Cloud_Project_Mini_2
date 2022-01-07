@@ -117,20 +117,20 @@ const Index = (props) => {
 
 
   //뉴스api
-  // const newsApi = async () => {
-  //   try {
+  const newsApi = async () => {
+    try {
 
 
-  //     const news = await axios.get(
-  //       `https://newsapi.org/v2/top-headlines?country=us&apiKey=1269ddcc25814aec9cb99df554126760&category=technology&pageSize=1`
-  //     );
-  //     // console.log(news);
-  //     setNewsMainArray(news.data.articles);
-  //     setNewsMainResults(news.data.totalResults);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+      const news = await axios.get(
+        `https://newsapi.org/v2/top-headlines?country=us&apiKey=9f5baf7d9f3f42879a20d7d19d9886e4&category=technology&pageSize=1`
+      );
+      // console.log(news);
+      setNewsMainArray(news.data.articles);
+      setNewsMainResults(news.data.totalResults);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     newsApi();
