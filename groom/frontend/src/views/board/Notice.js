@@ -85,6 +85,7 @@ const Notice = (props) => {
                         </td>
                         {/* <td>{v.userId}</td> */}
                         <td>{"관리자"}</td>
+                        <td>{v.creDate}</td>  
                         {/* <td>{v.nowDate}</td>  */}
                       </tr>
                     );

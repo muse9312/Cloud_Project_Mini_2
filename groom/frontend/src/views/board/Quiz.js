@@ -85,6 +85,7 @@ const Quiz = (props) => {
                         </td>
                         {/* <td>{v.userId}</td> */}
                         <td>{v.userId}</td>
+                        <td>{v.creDate}</td>  
                         {/* <td>{v.nowDate}</td>  */}
                       </tr>
                     );

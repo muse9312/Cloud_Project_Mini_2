@@ -62,32 +62,24 @@ const Login = () => {
         if (res.data.code === 200) {
           if (res.data.Code.id === 1) {
             sessionStorage.setItem('Managername', res.data.name);
-            Swal.fire({
-              icon: 'success',
-              title: 'Good!',
-              text: 'Login complete!',
-            })
-            // Swal.fire(
-            //   'Login complete!',
-            //   'success'
-            // )
+            Swal.fire({ icon: 'success', title: 'Good!', text: 'Login complete!' })
 
-            window.location = '/Manager/index';
+            setTimeout(function () {
+              window.location = '/Manager/index';
+            }, 1000);
+
           } else {
             sessionStorage.setItem('name', res.data.name);
-            Swal.fire({
-              icon: 'success',
-              title: 'Good!',
-              text: 'Login complete!',
-            })
-            window.location = '/admin/index';
+            Swal.fire({ icon: 'success', title: 'Good!', text: 'Login complete!' })
+            setTimeout(function () {
+              window.location = '/admin/index';
+            }, 1000);
+
           }
         } else if (res.data.code === 201) {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Please check your email and password..',
-          })
+          Swal.fire(
+            { icon: 'error', title: 'Oops...', text: 'Please check your email and password..' }
+          )
 
         }
       }

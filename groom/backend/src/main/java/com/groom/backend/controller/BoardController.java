@@ -82,11 +82,12 @@ public class BoardController {
     @PostMapping("/tableWrite")
     @ResponseBody
     public Board boardWrite(@ModelAttribute Board board) {
-        User user = (User) session.getAttribute("user_info");
+        // User user = (User) session.getAttribute("user_info");
         // String userId = user.getName();
         String userId = "익명";
         board.setUserId(userId);
         board.setCreDate(new Date());
+        board.setViewCnt(0L);
         boardRepository.save(board);
 
         return board;
@@ -104,7 +105,7 @@ public class BoardController {
         // User user = (User) session.getAttribute("user_info");
         // String userId = quiz_board.getUserId();
         // // String userId = "익명";
-        
+        quiz_board.setCreDate(new Date());
         // String userId = quiz_board.getUserId();
         // quiz_board.setUserId(userId);
         quizBoardRepository.save(quiz_board);
@@ -125,6 +126,7 @@ public class BoardController {
         
         // String userId = quiz_board.getUserId();
         // quiz_board.setUserId(userId);
+        notice_board.setCreDate(new Date());
         noticeBoardRepository.save(notice_board);
 
         return notice_board;
@@ -143,6 +145,7 @@ public class BoardController {
         
         // String userId = quiz_board.getUserId();
         // quiz_board.setUserId(userId);
+        free_board.setCreDate(new Date());
         freeBoardRepository.save(free_board);
 
         return free_board;
@@ -393,6 +396,16 @@ public class BoardController {
 
 
     //페이지
+    // @GetMapping("pagination")
+    // public String pagination(
+    //         Model model, @RequestParam(defaultValue = "") int page) {
+    //     int startPage = (page - 1) / 10 * 10 + 1;
+    //     int endPage = startPage + 9;
+    //     model.addAttribute("startPage", startPage);
+    //     model.addAttribute("endPage", endPage);
+    //     model.addAttribute("page", page);
+    //     return "pagination";
+    // }
 
 
 
