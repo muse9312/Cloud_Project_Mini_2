@@ -17,9 +17,56 @@
 */
 
 // reactstrap components
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
 
 const Header = () => {
+
+  const [list, setList] = useState([]);
+  const [content, setContent] = useState('');
+  const [title, setTitle] = useState('');
+
+  const [list1, setList1] = useState([]);
+  const [content1, setContent1] = useState('');
+  const [title1, setTitle1] = useState('');
+  
+  console.log('header start');
+
+  
+  useEffect(() => {
+    axios({
+      url: 'http://localhost:8080/board/noticeTables',
+      method: 'get'
+    }).then((res) => {
+     
+      setList(res.data);
+      setContent(res.data.length > 0 ? res.data[0].content : '');
+      setTitle(res.data.length > 0 ? res.data[0].title : '');
+
+    ;
+  
+
+    });
+  }, []); 
+
+
+  useEffect(() => {
+    axios({
+      url: 'http://localhost:8080/board/quizTables',
+      method: 'get'
+    }).then((res) => {
+     
+      setList1(res.data);
+      setContent1(res.data.length > 0 ? res.data[0].content : '');
+      setTitle1(res.data.length > 0 ? res.data[0].title : '');
+
+    
+
+    });
+  }, []); 
+
+ 
   return (
     <>
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8">
@@ -36,10 +83,17 @@ const Header = () => {
                           tag="h5"
                           className="text-uppercase text-muted mb-0"
                         >
-                          공지사항
+                         공지사항
                         </CardTitle>
                         <span className="h2 font-weight-bold mb-0">
-                          포트폴리오 작성하기
+                     
+                      <tr>
+                      
+                        <th scope="row">{title}</th>
+                        
+                      </tr>
+                    
+
                         </span>
                       </div>
                       <Col className="col-auto">
@@ -50,9 +104,14 @@ const Header = () => {
                     </Row>
                     <p className="mt-3 mb-0 text-muted text-sm">
                       <span className="text-success mr-2">
-                        <i className="fa fa-arrow-up" /> 조회수39
+                        <i className="fa fa-arrow-up" /> 
                       </span>{" "}
-                      <span className="text-nowrap">2022.01.12까지 
+                      <span className="text-nowrap">
+                      {
+                         <tr>
+                          <th scope="row">{content}</th>
+                         </tr>
+                      }
                     </span>
                     </p>
                   </CardBody>
@@ -97,7 +156,7 @@ const Header = () => {
                         >
                           오늘의 코딩용어
                         </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">Porps</span>
+                        <span className="h2 font-weight-bold mb-0">{title1}</span>
                       </div>
                       <Col className="col-auto">
                         <div className="icon icon-shape bg-yellow text-white rounded-circle shadow">
@@ -109,7 +168,7 @@ const Header = () => {
                       <span className="text-warning mr-2">
                         <i className="fas fa-arrow-down" /> 1.10%
                       </span>{" "}
-                      <span className="text-nowrap">Since yesterday</span>
+                      <span className="text-nowrap">{content1}</span>
                     </p>
                   </CardBody>
                 </Card>

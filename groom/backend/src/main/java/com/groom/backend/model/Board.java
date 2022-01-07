@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 @Entity
@@ -25,10 +27,10 @@ public class Board {
 
 	private long viewCnt;
 
-	// @Temporal(TemporalType.TIMESTAMP)
+ //@Temporal(TemporalType.TIMESTAMP)
 	// Date nowDate;
 
-	
+   @JsonFormat(pattern="yyyy -MM -dd")
 	private Date creDate;
 	
 

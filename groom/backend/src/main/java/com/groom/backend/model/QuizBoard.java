@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.Data;
 
 @Entity
@@ -22,7 +24,8 @@ public class QuizBoard {
 	private String content;
 	private String userId;
 	private String content2;
-
+	@JsonFormat(pattern="yyyy -MM -dd")
+	private Date creDate;
 	// @Temporal(TemporalType.TIMESTAMP)
 	// Date nowDate;
 	

@@ -85,7 +85,7 @@ const FreeTables = (props) => {
                         </td>
                         {/* <td>{v.userId}</td> */}
                         <td>{v.userId}</td>
-                        {/* <td>{v.nowDate}</td>  */}
+                        <td>{v.creDate}</td>  
                       </tr>
                     );
                   })}

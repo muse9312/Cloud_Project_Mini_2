@@ -41,6 +41,21 @@ const Tables = (props) => {
     });
   }, []); // deps
 
+  const [StartPage, setStartPage] = useState([]);
+
+  useEffect(() => {
+    axios({
+      url: 'http://localhost:8080/board/pagination',
+      method: 'get'
+    }).then((res) => {
+      console.log(res.data);
+      setStartPage(res.data);
+    });
+  }, []); // deps
+
+
+
+
 
 
   return (
@@ -84,7 +99,7 @@ const Tables = (props) => {
                           </a>
                         </td>
                         <td>{v.userId}</td>
-                        {/* <td>{v.nowDate}</td>  */}
+                        <td>{v.creDate}</td>
                       </tr>
                     );
                   })}
